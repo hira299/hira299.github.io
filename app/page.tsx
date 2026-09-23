@@ -15,20 +15,24 @@ import { personJsonLd, websiteJsonLd } from "@/lib/structured-data";
 
 const workSteps = [
   {
-    title: "Map the real workflow",
-    text: "Start from what actually happens today: the tools, the data, the people, and where things go wrong.",
+    title: "Build",
+    text: "Design the AI system or automation around real data and real failure modes: where state lives, what gets retried, and where failed payloads go.",
   },
   {
-    title: "Design for failure",
-    text: "Decide up front where state lives, what gets retried, and where failed payloads go, before building the happy path.",
+    title: "Integrate",
+    text: "Connect models, APIs, databases, and business tools, with structured outputs so downstream steps can trust what they receive.",
   },
   {
-    title: "Build and verify",
-    text: "Build in small, testable pieces and test them the way I test client systems: journeys, edge cases, and forced failures.",
+    title: "Test",
+    text: "Test it the way I test client platforms: end-to-end journeys, edge cases, malformed inputs, and forced upstream failures.",
   },
   {
-    title: "Hand over clearly",
-    text: "Deliver documentation and a Loom walkthrough, so your team knows how it works and what to do when something breaks.",
+    title: "Verify",
+    text: "Check the stored data and the API behavior, not only the screen, and verify fixes with regression checks.",
+  },
+  {
+    title: "Deploy",
+    text: "Ship to production with documentation and a Loom walkthrough, so your team knows how it works and what to do when something breaks.",
   },
 ];
 
@@ -56,6 +60,9 @@ export default function HomePage() {
 
       <section className="section" aria-labelledby="how-title">
         <h2 id="how-title">How I work</h2>
+        <p className="section-support">
+          I build AI systems and I test them. Doing both means reliability is designed in, not bolted on.
+        </p>
         <ol className="steps">
           {workSteps.map((step) => (
             <li key={step.title}>

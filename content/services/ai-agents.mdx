@@ -10,11 +10,13 @@ An AI agent is useful when it can hold context, use real data, call tools, and p
 
 **Persistent context.** Conversation or task state is stored outside the model (in a database, sheet, or document store) and loaded before each step. That is what lets an email agent keep a coherent thread across many replies.
 
-**Retrieval over verified data (RAG).** Answers are grounded in a defined source such as resume and portfolio data, live web results, or collected infrastructure evidence, rather than in the model's general knowledge.
+**Retrieval over verified data (RAG and CRAG).** Answers are grounded in a defined source such as resume and portfolio data, live web results, policy documents in pgvector, or collected infrastructure evidence, rather than in the model's general knowledge. With Corrective RAG, retrieved passages are scored for relevance first, and weak retrievals are corrected before the model answers.
 
 **Structured outputs and validation.** Where another system consumes the output, responses are constrained to a schema and checked before use.
 
 **Planner and synthesizer steps.** For research tasks, one model breaks the question into searches, retrieval gathers sources, and a second step writes the answer with citations.
+
+**Critic and citation checks.** For high-stakes answers, a separate critic step verifies that each answer cites a real source, such as an AWS ARN or a document section, and rejects it otherwise.
 
 **Error handling and escalation.** Agents fail like any other integration. Failed calls are retried or logged, and cases the agent shouldn't handle alone are handed to a person with context.
 
@@ -24,7 +26,7 @@ An AI agent is useful when it can hold context, use real data, call tools, and p
 
 - **Autonomous AI Interview Agent:** n8n, Gmail API, Groq, RAG, and Google Sheets thread memory
 - **Langflow research and citation engine:** planner-synthesizer RAG with Tavily web retrieval
-- **Cloud compliance engine:** Langflow and Groq assessment over collected AWS evidence
+- **Cloud compliance & evidence-based auditing engine:** 6-node LangGraph CRAG state machine with Llama 3.1 8B relevance scoring, a Critic Agent, and Supabase pgvector retrieval, answering 250+ question security reviews
 
 ## Common questions
 

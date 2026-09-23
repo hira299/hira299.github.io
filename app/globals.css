@@ -116,6 +116,12 @@ h3 {
   font-weight: 700;
 }
 
+.hero-role {
+  font-family: var(--font-display);
+  font-size: clamp(1.3rem, 3vw, 1.8rem);
+  margin: 0 0 0.5rem;
+}
+
 .lede {
   font-size: clamp(1.15rem, 2.4vw, 1.45rem);
   color: var(--fg);

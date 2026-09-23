@@ -31,7 +31,7 @@ export const services: Service[] = [
     hasPage: true,
     seoTitle: "AI Automation Engineer",
     description:
-      "Production AI automation: workflow orchestration, LLM integrations, state-aware pipelines, retries, and fault tolerance, built with n8n, Make.com, Python, PostgreSQL, and AWS.",
+      "Production AI automation and LLM pipelines: workflow orchestration, multi-stage LLM processing, state-aware pipelines, retries, and fault tolerance, built with Python, n8n, Make.com, PostgreSQL, and AWS.",
     summary:
       "Workflows that connect your tools, APIs, databases, and LLMs, and keep working when inputs are messy or services fail.",
     problems: [
@@ -40,9 +40,9 @@ export const services: Service[] = [
       "Pipelines that silently drop records when an API times out",
       "No visibility into where a run failed or what state it left behind",
     ],
-    technologies: ["n8n", "Make.com", "Python", "PostgreSQL", "AWS", "OpenAI", "Gemini", "Groq"],
+    technologies: ["Python", "n8n", "Make.com", "PostgreSQL", "AWS", "OpenRouter", "OpenAI", "Gemini", "Groq"],
     proof: [
-      "28,000+ production records processed through a 7-stage pipeline",
+      "28,000+ production records processed through a status-gated LLM enrichment pipeline",
       "5.6x processing speedup after reworking ETL for concurrency",
       "12+ Make.com AI automation flows built in production",
     ],
@@ -79,7 +79,7 @@ export const services: Service[] = [
     hasPage: true,
     seoTitle: "AI Agent Development",
     description:
-      "AI agents with persistent context, RAG over verified data, structured outputs, validation, and workflow orchestration, built for operational use.",
+      "AI agents and LLM systems with persistent context, RAG and Corrective RAG over verified data, structured outputs, validation, and LangGraph or n8n orchestration.",
     summary:
       "Agents that keep context across conversations, answer from verified sources, and hand off to people when they should.",
     problems: [
@@ -88,8 +88,9 @@ export const services: Service[] = [
       "Free-form LLM output breaking downstream steps",
       "No clear escalation path to a human",
     ],
-    technologies: ["n8n", "LangGraph", "Langflow", "RAG", "Groq", "Gemini", "OpenAI", "Tavily", "Gmail API"],
+    technologies: ["LangGraph", "CRAG", "LlamaIndex", "pgvector", "FastEmbed", "n8n", "Langflow", "Groq", "Gemini", "OpenAI", "Tavily"],
     proof: [
+      "6-node LangGraph Corrective RAG engine that answers 250+ question security reviews, with every answer required to cite a verified source",
       "Autonomous AI email agent with thread-state memory and Groq inference",
       "Planner-synthesizer research agent grounded in live web sources with citations",
       "JSON-mode enforcement for schema-valid LLM output in production",
@@ -136,8 +137,8 @@ export const services: Service[] = [
     technologies: ["Browser DevTools", "Network/API inspection", "curl", "Flutter testing", "Defect matrices"],
     proof: [
       "20 end-to-end enterprise journeys completed",
-      "60+ enterprise defects documented with API-level reproduction",
-      "150+ bugs identified at Sadiq.ai",
+      "678+ defects identified and documented across QA engagements",
+      "80+ defects documented with API-level reproduction on one enterprise B2B platform",
     ],
     caseStudies: ["multitenant-saas-qa"],
   },
@@ -159,7 +160,7 @@ export const services: Service[] = [
     ],
     technologies: ["HTTP", "REST", "curl", "Browser network inspection", "JSON schema checks", "PostgreSQL"],
     proof: [
-      "API-level reproduction evidence for 60+ enterprise defects",
+      "API-level reproduction evidence for 80+ defects on an enterprise B2B platform",
       "Cross-tenant status-code and authorization findings on a multi-tenant platform",
     ],
     caseStudies: ["multitenant-saas-qa"],

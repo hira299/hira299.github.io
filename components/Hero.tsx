@@ -7,10 +7,12 @@ export function Hero() {
 
   return (
     <section className="hero" aria-labelledby="hero-title">
-      <p className="eyebrow">{profile.role}</p>
+      <p className="eyebrow">{profile.careerRole}</p>
       <h1 id="hero-title">{profile.name}</h1>
+      <p className="hero-role">{profile.role}</p>
       <p className="lede">{profile.positioning}</p>
       <p className="support">{profile.statement}</p>
+      <p className="support">{profile.identity}</p>
       <div className="cta-row">
         <Link href="/contact/" className="button primary">
           Hire Me

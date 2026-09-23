@@ -10,7 +10,7 @@ import { buildMetadata } from "@/lib/metadata";
 export const metadata = buildMetadata({
   title: "About",
   description:
-    "Hira Ahmed is an AI Automation & QA Engineer in Karachi, Pakistan, building production n8n workflows and AI agents and testing B2B SaaS platforms.",
+    "Hira Ahmed is an AI Engineer in Karachi, Pakistan, building production LLM pipelines, AI agents, and n8n automations, and providing B2B SaaS QA and API testing.",
   path: "/about/",
 });
 
@@ -37,8 +37,14 @@ export default function AboutPage() {
         <div>
           <h2>Career focus</h2>
           <p className="support">
-            Production automation and the QA that keeps it trustworthy: n8n workflows, AI agents, API
-            integrations, and testing for B2B SaaS teams that need their systems to hold up under real use.
+            {profile.career.target} roles, including {profile.career.related.join(", ")}: building LLM systems,
+            AI agents, and AI pipelines that run in production.
+          </p>
+        </div>
+        <div>
+          <h2>Freelance services</h2>
+          <p className="support">
+            {profile.freelance.services.join(", ")}, through <Link href="/contact/">Upwork, Fiverr, and LinkedIn</Link>.
           </p>
         </div>
         <div>

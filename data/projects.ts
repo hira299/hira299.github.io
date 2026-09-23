@@ -101,15 +101,16 @@ export const projects: Project[] = [
   },
   {
     slug: "cloud-compliance-engine",
-    title: "Autonomous Cloud Compliance & AI Auditing Engine",
+    title: "Autonomous Cloud Compliance & Evidence-Based AI Auditing Engine",
     summary:
-      "AI-assisted AWS audit pipeline that extracts infrastructure metadata, stores evidence, scores risk, and reports compliance gaps with a remediation roadmap.",
+      "Answers enterprise security questionnaires (CAIQ, SOC 2, SIG) from live AWS evidence and policy documents, using a LangGraph Corrective RAG agent that must cite a verified source for every answer.",
     highlights: [
-      "Docker sidecar runs read-only AWS CLI audits",
-      "Langflow and Groq assessment step",
-      "Evidence persisted in Supabase",
+      "6-node LangGraph CRAG state machine with a Critic Agent that verifies AWS ARNs and document sections",
+      "Local PDF retrieval with FastEmbed and Supabase pgvector",
+      "n8n and PostgreSQL queue worker; 2,000+ questions processed with no timeout failures (reported)",
+      "Demo video shows the first, Langflow-based version",
     ],
-    stack: ["AWS", "Docker", "n8n", "Langflow", "Groq", "Supabase"],
+    stack: ["LangGraph", "CRAG", "LlamaIndex", "Supabase pgvector", "Groq", "FastAPI", "n8n", "Docker", "AWS CLI"],
     categories: ["n8n", "Cloud", "Cybersecurity", "AI Agents"],
     featured: 5,
     demoUrl: "https://www.loom.com/share/ab966bb76ebd4c44bef1ec6b0c906fdc",
@@ -215,7 +216,7 @@ export const projects: Project[] = [
     summary:
       "Neuro-symbolic framework combining LLM patch generation with Z3 SMT verification for autonomous remediation of cloud misconfigurations.",
     highlights: ["Evaluated on CloudFix-Bench (105 AWS Terraform patterns)", "Research Square preprint"],
-    stack: ["Python", "Z3", "Terraform", "LLMs"],
+    stack: ["Python", "Z3 SMT", "Terraform", "LLMs"],
     categories: ["Research", "Cybersecurity", "Cloud"],
     repoUrl: "https://github.com/hira299/sentinel-mesh",
   },

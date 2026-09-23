@@ -47,20 +47,21 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "28k-record-pipeline",
-    title: "28K+ Record AI Tools Pipeline",
+    title: "Production AI Enrichment Pipeline (28K+ Records)",
     href: "/case-studies/28k-record-pipeline/",
     description:
-      "A fault-tolerant Python ETL and AI enrichment pipeline processing 28,000+ records with 50 concurrent workers, PostgreSQL state tracking, and a 5.6x speedup.",
+      "A production LLM enrichment pipeline for 28,000+ records: status-gated LLM stages, structured outputs, 9-language translation via OpenRouter and Gemini, fault-tolerant parallel extraction, and a 5.6x speedup.",
     summary:
-      "Scraping, healing, enriching, and publishing 28,000+ AI tool listings with a fault-tolerant parallel pipeline.",
+      "A production AI pipeline that scrapes, enriches, translates, and publishes 28,000+ AI tool listings, with status-gated LLM stages that never skip a failure.",
     client: "TechPotion.ai",
     role: "Backend & Automation Engineer",
-    stack: ["Python", "Playwright", "Selenium", "BeautifulSoup", "PostgreSQL", "OpenRouter", "Gemini", "AWS", "Next.js", "FastAPI"],
+    stack: ["Python", "OpenRouter", "Gemini Flash Lite", "PostgreSQL", "Playwright", "Selenium", "BeautifulSoup", "AWS", "Next.js", "FastAPI"],
     metrics: [
       { value: "28,000+", label: "Production records" },
+      { value: "4", label: "Sequential LLM stages" },
+      { value: "9", label: "Languages translated" },
       { value: "5.6x", label: "Processing speedup" },
       { value: "95%", label: "Reported extraction success rate" },
-      { value: "50", label: "Concurrent workers" },
     ],
     services: ["ai-automation", "api-integrations"],
     projects: [],
@@ -71,7 +72,7 @@ export const caseStudies: CaseStudy[] = [
     title: "Multi-Tenant SaaS QA",
     href: "/case-studies/multitenant-saas-qa/",
     description:
-      "Lead QA on PharmaConnect, a multi-tenant B2B pharmaceutical distribution platform: 20 end-to-end journeys, 60+ defects, and 4 critical P1 findings.",
+      "Lead QA on PharmaConnect, a multi-tenant B2B pharmaceutical distribution platform: 20 end-to-end journeys, 80+ defects, and 4 critical P1 findings.",
     summary:
       "Lead QA on a multi-tenant B2B pharmaceutical distribution platform: journeys, API evidence, authorization, isolation, and reconciliation.",
     client: "PharmaConnect",
@@ -80,7 +81,7 @@ export const caseStudies: CaseStudy[] = [
     metrics: [
       { value: "20", label: "End-to-end journeys" },
       { value: "6", label: "User roles tested" },
-      { value: "60+", label: "Defects documented" },
+      { value: "80+", label: "Defects documented" },
       { value: "4", label: "Critical P1 findings" },
     ],
     services: ["qa-testing", "multitenant-qa", "api-testing", "business-logic-testing"],
@@ -105,23 +106,25 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "cloud-compliance",
-    title: "Cloud Compliance Automation",
+    title: "Cloud Compliance & Evidence-Based AI Auditing Engine",
     href: "/case-studies/cloud-compliance/",
     description:
-      "An AI-assisted AWS audit pipeline using a Docker sidecar, n8n, Langflow, Groq, and Supabase to collect evidence, score risk, and generate remediation guidance.",
+      "An evidence-based AI auditing engine: a 6-node LangGraph Corrective RAG state machine over live AWS evidence and policy documents, answering 250+ question security reviews (CAIQ, SOC 2, SIG) with required citations.",
     summary:
-      "Collecting AWS configuration evidence automatically, then scoring risk and drafting remediation guidance with an AI assessment step.",
+      "Collecting live AWS evidence, then answering enterprise security questionnaires with a LangGraph Corrective RAG agent that must cite a verified source for every answer.",
     client: "Personal production project",
-    role: "Designed and built the pipeline end-to-end",
-    stack: ["AWS CLI", "Docker", "Python", "Flask", "n8n", "Langflow", "Groq", "Supabase"],
+    role: "Designed and built both versions end-to-end",
+    stack: ["LangGraph", "CRAG", "LlamaIndex", "Groq (Llama 3.1 8B)", "Supabase pgvector", "FastEmbed", "PyMuPDF", "FastAPI", "n8n", "PostgreSQL", "Docker", "AWS CLI"],
     metrics: [
-      { value: "100-point", label: "Infrastructure assessment" },
-      { value: "0–100", label: "Risk score" },
+      { value: "~90%", label: "Reported cut in questionnaire turnaround" },
+      { value: "250+", label: "Questions per enterprise review" },
+      { value: "2,000+", label: "Questions processed, no timeout failures (reported)" },
+      { value: "0.95", label: "Reported semantic relevance score" },
     ],
-    services: ["ai-automation", "n8n-automation", "ai-agents"],
+    services: ["ai-agents", "ai-automation", "n8n-automation"],
     projects: ["cloud-compliance-engine"],
     links: [
-      { label: "Demo (Loom)", href: "https://www.loom.com/share/ab966bb76ebd4c44bef1ec6b0c906fdc" },
+      { label: "Demo of the first version (Loom)", href: "https://www.loom.com/share/ab966bb76ebd4c44bef1ec6b0c906fdc" },
       {
         label: "Repository",
         href: "https://github.com/hira299/Cloud-Security-Audit-Compliance-Automation-Platform",

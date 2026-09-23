@@ -1,6 +1,6 @@
 # hira299.github.io
 
-Source for [hira299.github.io](https://hira299.github.io/), the portfolio of **Hira Ahmed**, AI Automation & QA Engineer (n8n, AI agents, API testing, B2B SaaS QA).
+Source for [hira299.github.io](https://hira299.github.io/), the portfolio of **Hira Ahmed**, an AI Engineer who builds production LLM pipelines, AI agents, and automations, and also provides n8n automation and B2B SaaS QA services.
 
 The site explains the work in depth (services, case studies, projects, and research) and links out to the profiles where clients can hire or verify it.
 
@@ -71,7 +71,7 @@ This repository is public. It must never contain confidential client material: i
 
 ## Author
 
-**Hira Ahmed**, AI Automation & QA Engineer, Karachi, Pakistan
+**Hira Ahmed**, AI Engineer · AI Automation & QA, Karachi, Pakistan
 
 - Portfolio: [hira299.github.io](https://hira299.github.io/)
 - LinkedIn: [hira-ahmed-4068402a7](https://www.linkedin.com/in/hira-ahmed-4068402a7)
