@@ -4,58 +4,85 @@ title: Multi-Tenant SaaS QA
 
 ## Problem
 
-PharmaConnect, a multi-tenant B2B pharmaceutical distribution and logistics platform, needed thorough verification before release. Several companies share the platform, each with multiple roles, and money moves through pricing, checkout, invoicing, and payment reconciliation. Defects in that kind of system don't only break screens; they leak data between tenants or corrupt financial records.
+PharmaConnect is a multi-tenant B2B pharmaceutical distribution and logistics platform. Distributors, pharmacies, drivers, and administrators share one system, and money moves through catalog pricing, discounts, checkout, delivery batches, invoicing, payment reconciliation, returns, and credit notes. Defects in a system like this don't only break screens. They let one role act as another, leak sensitive data, or corrupt financial records.
+
+The platform needed structured verification of its full order-to-cash lifecycle and its security boundaries before release.
 
 ## Context
 
-A production engagement where I led QA as part of my role at TechPotion.ai. Specific internal details, URLs, data, and payloads are not published here.
+A production engagement where I led QA as part of my role at TechPotion.ai, testing against a staging environment. Specific internal details, URLs, record identifiers, data, and payloads are not published here.
 
 ## My Role
 
-Lead QA: planning and running end-to-end journeys, API-level investigation, security-oriented testing, and defect reporting with reproduction evidence.
+Lead QA: designing the journey-based test plan, executing it across every persona, investigating at the API level, running security-oriented testing, and reporting each defect with reproduction steps, expected versus actual behavior, and evidence. I retested fixes against the original reproduction steps and the surrounding flows.
 
 ## Architecture
 
-The platform serves several tenant types and 6 user roles across administration, distribution, pharmacy, delivery, accounting, and public access. Testing focused on the boundaries between them: tenant to tenant, role to role, and UI to API.
+The platform serves 6 seeded roles across system administration, distribution management, pharmacy management, delivery drivers, and public visitors. Testing covered 15 functional modules:
+
+- **Order-to-delivery:** shopping and cart, checkout, order management, logistics and dispatch, driver execution and proof of delivery
+- **Finance:** invoicing and ledger, payments and reconciliation, returns and credit notes
+- **Catalog:** master catalog, distributor catalog and discounts
+- **Accounts and access:** authentication and onboarding, users and roles (RBAC), accounts and locations, partnerships and invitations
+- **Reporting:** dashboards and reports
+
+Testing focused on the boundaries between these parts: tenant to tenant, role to role, and what the UI shows versus what the API allows.
 
 ## Technology Stack
 
-Exploratory testing, browser network/API inspection, curl-based reproduction, an RBAC permission matrix, and data-integrity checks.
+Exploratory and journey-based testing, browser network and API inspection, curl-based reproduction, an RBAC permission matrix, data-integrity checks against stored records, and a structured defect log with severity (P1 to P4), affected layer, persona, and retest notes.
 
 ## Implementation
 
-- **End-to-end journeys.** 20 complete journeys executed to 100% completion across all 6 roles.
-- **API-level evidence.** Every defect documented with request/response evidence, not only screenshots.
-- **Authentication and authorization.** Session and account-state checks, and role-by-role permission boundaries.
-- **Multi-tenant isolation.** Cross-tenant access attempts, including what status codes reveal about other tenants' records.
-- **Business logic.** Pricing, checkout, invoicing, and reconciliation, including behavior under timeouts.
-- **Data integrity.** Catalog imports, relational deletes, and duplicated or orphaned records.
-- **Root-cause analysis.** Controlled experiments to find where a discrepancy actually comes from rather than reporting symptoms.
+I organized the work as 20 end-to-end journeys in four groups, each run as the persona that would perform it in production:
+
+- **Order to delivery (6 journeys).** Placing and checking out orders as a pharmacy, booking orders directly as a distributor, building and handing over delivery batches, executing routes as a driver (proof of delivery, GPS, partial delivery), and verifying automatic invoicing and batch idempotency.
+- **Payments and finance (4 journeys).** Negative RBAC checks on payment actions, three-stage partial settlement with a ledger audit, overdue derivation reconciled against the finance dashboard, and cross-tenant invoice isolation between two distributors.
+- **Returns (4 journeys).** Requesting returns with attachments and quantity validation, reviewing them (approve or reject, restock or dispose), executing return pickups, and issuing credit notes with ledger settlement.
+- **Security and boundaries (6 journeys).** The distributor versus driver operational boundary, wrong and inactive driver validation, a tenant isolation sweep across every entity type, protection of system roles and permissions, persona surface checks across all 6 roles, and a frontend versus backend security parity sweep.
+
+Alongside the journeys, I inspected the network traffic for every important action, so each defect records what the browser sent, what the API returned, and what was stored, not only what the screen showed.
 
 ## Reliability / QA
 
-Findings were classified by severity (P1 to P4) and delivered with reproduction steps developers could run directly, plus regression verification after fixes.
+Every defect was classified by severity and by the layer where it lived:
+
+- **Severity:** 11 P1, 19 P2, 43 P3, 7 P4
+- **Layer:** 58 frontend only, 10 backend only, 12 in both frontend and backend
+
+Recording the layer mattered. A frontend-only defect can be fixed in the UI, but a backend or both-layer defect means the API itself accepts something it should reject. Hiding a button does not fix that.
+
+Fixes were retested against the original steps and the flows around them. Retesting caught cases where a UI fix exposed a second, backend-level failure underneath, and a fix that introduced a regression in a shared input component.
 
 ## Challenges
 
-- Many roles and tenants, so the number of permission combinations is large
-- Financial issues that only appear under specific timing, such as network timeouts
-- Symptoms that look like separate bugs but share one cause
+- **Permission combinations.** Six roles, many tenants, and 15 modules produce a large number of role-action-tenant combinations to cover.
+- **UI versus API parity.** Several flows looked correct in the interface while the API still allowed the forbidden action, or rejected a valid one silently with no error shown.
+- **Financial correctness across stages.** Invoice, payment, and ledger totals had to stay consistent through partial settlements, cancelled and re-created batches, and returns.
+- **Sensitive data in unexpected places.** Some of the most serious findings were in audit logging, not in the main application flows.
 
 ## Solution
 
-Journey-based coverage for breadth, a permission matrix for roles and tenants, API-level reproduction for every finding, and controlled experiments for root cause.
+- Journey-based coverage for breadth, run as each real persona
+- A role-by-action permission matrix for depth on authorization
+- A dedicated frontend versus backend parity sweep, testing the API directly for actions the UI hides
+- Stored-data checks after every financial action, comparing line totals, header totals, and ledger balances
+- A tenant isolation sweep across every entity type, including which status codes the API returns for another tenant's records
 
 ## Results
 
-- 20 end-to-end journeys completed
-- 80+ defects documented with API-level reproduction evidence
-- 4 critical P1 issues identified, in these areas:
-  - deactivated accounts keeping active sessions (authorization)
-  - payment reconciliation that could produce duplicate invoice lines after timeouts
-  - expired promotional pricing still honored at checkout
-  - cross-tenant responses that revealed whether another tenant's records existed
+- 20 end-to-end journeys executed across all 6 roles; 3 of the security and boundary journeys failed and produced findings
+- 80+ defects documented with reproduction steps and API-level evidence
+- 11 P1 defects identified, in these areas:
+  - **Authorization:** a distributor manager could perform the driver's full delivery workflow, including starting routes and submitting proof of delivery
+  - **Authentication:** deactivated users could still log in, unverified accounts could authenticate without completing OTP verification or admin approval, and the password reset flow could lock users out of their accounts
+  - **Sensitive data exposure:** audit logs exposed credential material (password hashes, active session tokens, and live one-time verification codes) to users with audit access
+  - **Financial integrity:** payments exceeding the outstanding balance were accepted and corrupted invoice and revenue totals, invoice line quantities doubled when orders were re-batched after a cancelled batch, and expired promotional pricing was still honored at checkout
+  - **Checkout availability:** a phone input defect blocked checkout submission
+- Further findings in tenant isolation (the API returned "forbidden" instead of "not found" for another tenant's orders, which confirms the record exists), onboarding approval gates, catalog imports, and relational deletes that left orphaned records
 
 ## Lessons Learned
 
-The most serious defects sat at boundaries: between tenants, between roles, and between what the UI shows and what the API allows. Testing those boundaries directly finds issues that journey testing alone would miss.
+The most serious defects sat at boundaries: between roles, between tenants, and between what the UI shows and what the API allows. Journey testing finds whether the product works. Testing each boundary directly at the API finds whether it is safe.
+
+Logging and audit features also need security testing. Data written for observability can become a way to take over accounts if credentials or verification codes end up in it.

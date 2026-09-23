@@ -22,9 +22,9 @@ export const experience: ExperienceItem[] = [
     location: "Remote",
     summary: "Leading QA across current production B2B software engagements.",
     highlights: [
-      "Executed 20 end-to-end enterprise QA journeys to 100% completion.",
+      "Executed 20 end-to-end enterprise QA journeys across 6 user roles.",
       "Documented 80+ defects with API-level reproduction evidence on an enterprise multi-tenant B2B platform.",
-      "Identified 4 critical P1 security and business-logic issues during backend security testing.",
+      "Identified 11 P1 security and business-logic defects, including authorization bypasses, credential exposure in audit logs, and payment reconciliation flaws.",
       "Tested authentication, authorization, multi-tenant isolation, pricing, financial reconciliation, and data integrity.",
     ],
     engagements: [
@@ -33,7 +33,7 @@ export const experience: ExperienceItem[] = [
         description: "Multi-tenant B2B pharmaceutical distribution and logistics platform.",
         highlights: [
           "Lead QA across 20 end-to-end journeys and 6 user roles.",
-          "80+ defects documented with API-level evidence; 4 critical P1 findings.",
+          "80+ defects documented with API-level evidence across 15 modules; 11 P1 defects.",
         ],
       },
       {

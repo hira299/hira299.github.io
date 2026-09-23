@@ -72,9 +72,9 @@ export const caseStudies: CaseStudy[] = [
     title: "Multi-Tenant SaaS QA",
     href: "/case-studies/multitenant-saas-qa/",
     description:
-      "Lead QA on PharmaConnect, a multi-tenant B2B pharmaceutical distribution platform: 20 end-to-end journeys, 80+ defects, and 4 critical P1 findings.",
+      "Lead QA on PharmaConnect, a multi-tenant B2B pharmaceutical distribution platform: 20 end-to-end journeys, 80+ defects across 15 modules, and 11 P1 findings.",
     summary:
-      "Lead QA on a multi-tenant B2B pharmaceutical distribution platform: journeys, API evidence, authorization, isolation, and reconciliation.",
+      "Lead QA on a multi-tenant B2B pharmaceutical distribution platform: order-to-cash journeys, API evidence, authorization, audit-log security, and reconciliation.",
     client: "PharmaConnect",
     role: "Lead QA",
     stack: ["Exploratory testing", "API testing", "Browser network inspection", "curl", "RBAC matrix"],
@@ -82,7 +82,7 @@ export const caseStudies: CaseStudy[] = [
       { value: "20", label: "End-to-end journeys" },
       { value: "6", label: "User roles tested" },
       { value: "80+", label: "Defects documented" },
-      { value: "4", label: "Critical P1 findings" },
+      { value: "11", label: "P1 defects" },
     ],
     services: ["qa-testing", "multitenant-qa", "api-testing", "business-logic-testing"],
     projects: [],

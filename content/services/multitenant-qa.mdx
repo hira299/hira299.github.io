@@ -14,19 +14,22 @@ In a multi-tenant SaaS product, many customers share one system. The most damagi
 - **Authentication and session persistence.** Whether sessions end when accounts are deactivated, roles change, or passwords reset.
 - **Cross-tenant access.** Including what status codes reveal: a "forbidden" response can confirm a record exists where "not found" would not.
 - **Business logic.** Tenant-specific pricing, promotions, limits, and workflows.
-- **Financial reconciliation.** Totals, invoices, and ledgers checked under retries, timeouts, and concurrent updates.
+- **Financial reconciliation.** Totals, invoices, and ledgers checked across partial payments, cancelled and re-created batches, and returns.
+- **Audit and logging.** Whether logs expose credentials, session tokens, or verification codes to users who can read them.
 - **Data integrity.** Imports that drop rows, deletes that leave orphaned records, and duplicates.
 
 ## Example findings
 
 From Lead QA on PharmaConnect, a multi-tenant B2B pharmaceutical distribution platform tested across 6 user roles:
 
-- Deactivated accounts keeping active sessions
-- Cross-tenant responses that revealed whether another tenant's records existed
-- Payment reconciliation that could produce duplicate invoice lines after timeouts
+- A distributor manager able to perform the driver's full delivery workflow
+- Deactivated users still able to log in, and unverified accounts authenticating without OTP or admin approval
+- Audit logs exposing password hashes, session tokens, and live verification codes
+- Overpayments accepted beyond the outstanding balance, corrupting invoice and revenue totals
 - Expired promotional pricing still honored at checkout
+- The API returning "forbidden" instead of "not found" for another tenant's orders
 
-These were among 4 critical P1 findings in 80+ documented defects.
+These came from 80+ documented defects, 11 of them P1, across 15 modules.
 
 ## Common questions
 
