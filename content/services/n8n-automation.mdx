@@ -32,6 +32,12 @@ I build production n8n workflows and AI agents that connect APIs, databases, bus
 - **Cloud cost sentinel:** AWS Cost Explorer anomaly detection with AI diagnosis
 - **Cloud compliance engine:** Docker sidecar audits and an n8n + PostgreSQL queue worker with row-level locks and backoff, processing 2,000+ questions with no timeout failures (reported)
 
+### Example: profitability guardrail
+
+A state machine that alerts only when a project's budget state changes, with malformed payloads isolated in a dead-letter queue.
+
+<GuardrailDiagram />
+
 ## Common questions
 
 ### How do you build reliable n8n workflows?

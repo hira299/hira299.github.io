@@ -31,6 +31,8 @@ I designed and built both versions end-to-end.
 4. **Verification.** A Critic Agent checks that every answer cites a real AWS ARN or a real document section before it's accepted.
 5. **Queueing.** An asynchronous worker in n8n and PostgreSQL feeds questions through the engine, served by FastAPI.
 
+<ComplianceDiagram />
+
 ## Technology Stack
 
 LangGraph, CRAG, LlamaIndex, Groq (Llama 3.1 8B), Supabase pgvector, FastEmbed, PyMuPDF, FastAPI, n8n, PostgreSQL, Docker, AWS CLI. The first version also used Langflow and Flask.

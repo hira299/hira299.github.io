@@ -878,6 +878,10 @@ h4 {
   overflow-x: auto;
 }
 
+.prose > .diagram {
+  width: min(960px, calc(100vw - 2.5rem));
+}
+
 .diagram svg {
   display: block;
   width: 100%;
@@ -1188,4 +1192,117 @@ main:focus {
   .button.ghost {
     width: auto;
   }
+}
+
+/* Diagram SVG elements */
+
+.diagram-svg text {
+  font-family: var(--font-body);
+  fill: var(--fg);
+}
+
+.d-box rect {
+  fill: #1c1630;
+  stroke: rgba(196, 181, 253, 0.35);
+  stroke-width: 1.2;
+}
+
+.d-box.tone-ai rect {
+  fill: rgba(124, 58, 237, 0.28);
+  stroke: #a78bfa;
+}
+
+.d-box.tone-data rect {
+  fill: rgba(56, 189, 248, 0.1);
+  stroke: rgba(125, 211, 252, 0.55);
+}
+
+.d-box.tone-warn rect {
+  fill: rgba(251, 146, 60, 0.1);
+  stroke: rgba(253, 186, 116, 0.6);
+  stroke-dasharray: 5 4;
+}
+
+.d-box.tone-ok rect {
+  fill: rgba(52, 211, 153, 0.1);
+  stroke: rgba(110, 231, 183, 0.6);
+}
+
+.d-box.tone-muted rect {
+  fill: rgba(28, 22, 48, 0.4);
+  stroke: rgba(236, 232, 247, 0.15);
+}
+
+.d-title {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.diagram-svg .d-sub {
+  font-size: 12px;
+  fill: var(--muted);
+}
+
+.diagram-svg .d-label,
+.diagram-svg .d-note {
+  font-size: 12px;
+  fill: var(--accent);
+}
+
+.diagram-svg .d-group-label {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  fill: var(--accent);
+}
+
+.d-arrow path {
+  fill: none;
+  stroke: rgba(196, 181, 253, 0.75);
+  stroke-width: 1.6;
+}
+
+.d-arrow.tone-warn path {
+  stroke: rgba(253, 186, 116, 0.85);
+}
+
+.d-arrow.tone-ok path {
+  stroke: rgba(110, 231, 183, 0.85);
+}
+
+.arrow-head {
+  fill: rgba(196, 181, 253, 0.9);
+}
+
+.arrow-head.tone-warn {
+  fill: rgba(253, 186, 116, 0.95);
+}
+
+.arrow-head.tone-ok {
+  fill: rgba(110, 231, 183, 0.95);
+}
+
+.d-group rect {
+  fill: rgba(28, 22, 48, 0.35);
+  stroke: rgba(236, 232, 247, 0.14);
+  stroke-dasharray: 4 4;
+}
+
+.d-group.tone-ai rect {
+  fill: rgba(124, 58, 237, 0.07);
+  stroke: rgba(167, 139, 250, 0.45);
+}
+
+.d-group.tone-data rect {
+  fill: rgba(56, 189, 248, 0.06);
+  stroke: rgba(125, 211, 252, 0.45);
+}
+
+.d-cell {
+  fill: #8b5cf6;
+}
+
+.d-bar {
+  fill: #8b5cf6;
 }

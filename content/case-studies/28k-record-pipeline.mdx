@@ -28,6 +28,8 @@ The pipeline is status-driven. Every record carries a status in PostgreSQL, and 
 
 Because progress lives in the database rather than in a running process, any stage can be stopped, resumed, or rerun without redoing finished work.
 
+<PipelineDiagram />
+
 ## Technology Stack
 
 Python, OpenRouter with Gemini Flash Lite, PostgreSQL, Playwright, Selenium, BeautifulSoup, AWS (EC2, Lambda, EventBridge, SQS, RDS PostgreSQL, API Gateway, S3), Next.js, FastAPI.

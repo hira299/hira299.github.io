@@ -2,6 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
 import { compileMDX } from "next-mdx-remote/rsc";
+import { diagramComponents } from "@/components/diagrams";
 
 const contentRoot = path.join(process.cwd(), "content");
 
@@ -13,6 +14,7 @@ export async function renderMdx(section: "case-studies" | "services", slug: stri
   const source = readContentFile(section, `${slug}.mdx`);
   const { content } = await compileMDX({
     source,
+    components: diagramComponents,
     options: { parseFrontmatter: true },
   });
   return content;
