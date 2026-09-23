@@ -14,7 +14,11 @@ export function ProjectCard({ project }: { project: Project }) {
       </ul>
       <p className="tags">{project.stack.join(" · ")}</p>
       <p className="link-row">
-        {project.caseStudy ? <Link href={project.caseStudy}>Case study</Link> : null}
+        {project.caseStudy ? (
+          <Link href={project.caseStudy}>
+            Case study<span className="visually-hidden"> for {project.title}</span>
+          </Link>
+        ) : null}
         {project.demoUrl ? (
           <a href={project.demoUrl} target="_blank" rel="noopener noreferrer">
             Demo<span className="visually-hidden"> of {project.title} (opens in a new tab)</span>

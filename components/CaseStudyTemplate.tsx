@@ -3,7 +3,9 @@ import { HireMe } from "./HireMe";
 import { getCaseStudy, type CaseStudySlug } from "@/data/case-studies";
 import { projects } from "@/data/projects";
 import { services } from "@/data/services";
+import { JsonLd } from "./JsonLd";
 import { renderMdx } from "@/lib/content";
+import { caseStudyJsonLd } from "@/lib/structured-data";
 
 export async function CaseStudyTemplate({ slug }: { slug: CaseStudySlug }) {
   const study = getCaseStudy(slug);
@@ -94,6 +96,7 @@ export async function CaseStudyTemplate({ slug }: { slug: CaseStudySlug }) {
         </div>
       </section>
 
+      <JsonLd data={caseStudyJsonLd(study, relatedServices)} />
       <HireMe title="Need something similar?" />
     </>
   );

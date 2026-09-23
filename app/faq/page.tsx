@@ -1,7 +1,9 @@
 import { FAQ } from "@/components/FAQ";
+import { JsonLd } from "@/components/JsonLd";
 import { HireMe } from "@/components/HireMe";
 import { getFaqItems } from "@/lib/content";
 import { buildMetadata } from "@/lib/metadata";
+import { faqJsonLd } from "@/lib/structured-data";
 
 export const metadata = buildMetadata({
   title: "FAQ: n8n, AI Agents & SaaS QA",
@@ -11,6 +13,7 @@ export const metadata = buildMetadata({
 });
 
 export default function FaqPage() {
+  const items = getFaqItems();
   return (
     <>
       <section className="page-header">
@@ -18,7 +21,8 @@ export default function FaqPage() {
         <h1>Questions clients ask</h1>
         <p className="lede">What I build, what I test, and how engagements work.</p>
       </section>
-      <FAQ items={getFaqItems()} title="Answers" />
+      <FAQ items={items} title="Answers" />
+      <JsonLd data={faqJsonLd(items)} />
       <HireMe />
     </>
   );

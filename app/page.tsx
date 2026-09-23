@@ -11,7 +11,7 @@ import { Services } from "@/components/Services";
 import { TechStack } from "@/components/TechStack";
 import { caseStudies } from "@/data/case-studies";
 import { featuredProjects } from "@/data/projects";
-import { personJsonLd, websiteJsonLd } from "@/lib/structured-data";
+import { homeJsonLd } from "@/lib/structured-data";
 
 const workSteps = [
   {
@@ -39,7 +39,7 @@ const workSteps = [
 export default function HomePage() {
   return (
     <>
-      <JsonLd data={[personJsonLd(), websiteJsonLd()]} />
+      <JsonLd data={homeJsonLd()} />
       <Hero />
       <ProofMetrics />
       <Services />

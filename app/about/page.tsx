@@ -1,16 +1,20 @@
 import Link from "next/link";
 import { ExperienceTimeline } from "@/components/ExperienceTimeline";
 import { HireMe } from "@/components/HireMe";
+import { JsonLd } from "@/components/JsonLd";
 import { Research } from "@/components/Research";
 import { SocialLinks } from "@/components/SocialLinks";
 import { TechStack } from "@/components/TechStack";
 import { profile } from "@/data/profile";
 import { buildMetadata } from "@/lib/metadata";
+import { aboutJsonLd } from "@/lib/structured-data";
+
+const description =
+  "Hira Ahmed is an AI Engineer in Karachi, Pakistan, building production LLM pipelines, AI agents, and n8n automations, and providing B2B SaaS QA and API testing.";
 
 export const metadata = buildMetadata({
   title: "About",
-  description:
-    "Hira Ahmed is an AI Engineer in Karachi, Pakistan, building production LLM pipelines, AI agents, and n8n automations, and providing B2B SaaS QA and API testing.",
+  description,
   path: "/about/",
 });
 
@@ -73,6 +77,7 @@ export default function AboutPage() {
         <SocialLinks />
       </section>
 
+      <JsonLd data={aboutJsonLd(description)} />
       <HireMe />
     </>
   );

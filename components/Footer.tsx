@@ -11,7 +11,7 @@ export function Footer() {
       <div className="footer-inner">
         <div>
           <p className="brand">Hira Ahmed</p>
-          <p>AI Automation & QA Engineer · Karachi, Pakistan · Remote</p>
+          <p>AI Engineer · AI Automation & QA · Karachi, Pakistan · Remote</p>
           <p>
             <a href={`mailto:${email}`}>{email}</a>
           </p>

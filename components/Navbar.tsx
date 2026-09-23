@@ -1,13 +1,5 @@
 import Link from "next/link";
-
-const links = [
-  { href: "/n8n-automation/", label: "n8n" },
-  { href: "/ai-agents/", label: "AI Agents" },
-  { href: "/qa-testing/", label: "QA" },
-  { href: "/case-studies/", label: "Case Studies" },
-  { href: "/projects/", label: "Projects" },
-  { href: "/about/", label: "About" },
-];
+import { NavLinks } from "./NavLinks";
 
 export function Navbar() {
   return (
@@ -17,20 +9,12 @@ export function Navbar() {
       </a>
       <nav className="site-nav" aria-label="Primary">
         <Link href="/" className="brand">
+          <span className="brand-mark" aria-hidden="true">
+            H
+          </span>
           Hira Ahmed
         </Link>
-        <ul className="nav-links">
-          {links.map((link) => (
-            <li key={link.href}>
-              <Link href={link.href}>{link.label}</Link>
-            </li>
-          ))}
-          <li>
-            <Link href="/contact/" className="nav-cta">
-              Hire Me
-            </Link>
-          </li>
-        </ul>
+        <NavLinks />
       </nav>
     </header>
   );

@@ -1,12 +1,14 @@
 import { CaseStudyCard } from "@/components/CaseStudyCard";
 import { HireMe } from "@/components/HireMe";
+import { JsonLd } from "@/components/JsonLd";
 import { caseStudies } from "@/data/case-studies";
 import { buildMetadata } from "@/lib/metadata";
+import { collectionJsonLd } from "@/lib/structured-data";
 
 export const metadata = buildMetadata({
   title: "Case Studies",
   description:
-    "Case studies on an n8n AI email agent, a 28K+ record pipeline, multi-tenant SaaS QA, AWS cost optimization, and cloud compliance automation.",
+    "Case studies on an n8n AI email agent, a production AI enrichment pipeline, multi-tenant SaaS QA, AWS cost optimization, and an evidence-based AI auditing engine.",
   path: "/case-studies/",
 });
 
@@ -28,6 +30,14 @@ export default function CaseStudiesPage() {
           ))}
         </div>
       </section>
+      <JsonLd
+        data={collectionJsonLd(
+          "/case-studies/",
+          "Case Studies",
+          "Engineering case studies on AI systems, automation, and QA.",
+          caseStudies.map((study) => ({ name: study.title, url: study.href })),
+        )}
+      />
       <HireMe />
     </>
   );

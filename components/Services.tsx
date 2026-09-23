@@ -3,7 +3,7 @@ import { services } from "@/data/services";
 
 export function Services({
   title = "What I build and test",
-  intro = "Automation and QA for production systems: the workflows that run your operations, and the checks that keep them trustworthy.",
+  intro = "AI systems and automations for production, and the QA that keeps them trustworthy: LLM pipelines, agents, n8n workflows, and testing for B2B SaaS.",
 }: {
   title?: string;
   intro?: string;

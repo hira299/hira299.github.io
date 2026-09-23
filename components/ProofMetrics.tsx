@@ -1,3 +1,4 @@
+import { CountUp } from "./CountUp";
 import { profile } from "@/data/profile";
 
 export function ProofMetrics() {
@@ -10,7 +11,9 @@ export function ProofMetrics() {
       <ul className="metrics-grid">
         {profile.metrics.map((metric) => (
           <li key={metric.label}>
-            <strong>{metric.value}</strong>
+            <strong>
+              <CountUp value={metric.value} />
+            </strong>
             <span className="metric-label">{metric.label}</span>
             <span className="metric-context">{metric.context}</span>
           </li>

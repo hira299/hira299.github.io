@@ -3,7 +3,9 @@ import { CaseStudyCard } from "./CaseStudyCard";
 import { HireMe } from "./HireMe";
 import { caseStudies } from "@/data/case-studies";
 import { getService, type ServiceSlug } from "@/data/services";
+import { JsonLd } from "./JsonLd";
 import { renderMdx } from "@/lib/content";
+import { servicePageJsonLd } from "@/lib/structured-data";
 
 export async function ServiceTemplate({ slug }: { slug: ServiceSlug }) {
   const service = getService(slug);
@@ -63,6 +65,7 @@ export async function ServiceTemplate({ slug }: { slug: ServiceSlug }) {
         More answers on the <Link href="/faq/">FAQ page</Link>.
       </p>
 
+      <JsonLd data={servicePageJsonLd(service)} />
       <HireMe title={`Discuss a ${service.title.toLowerCase()} project`} />
     </>
   );

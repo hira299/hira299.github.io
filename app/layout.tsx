@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import { Fraunces, Source_Sans_3 } from "next/font/google";
 import { Footer } from "@/components/Footer";
+import { JsonLd } from "@/components/JsonLd";
 import { Navbar } from "@/components/Navbar";
 import { buildMetadata } from "@/lib/metadata";
+import { siteJsonLd } from "@/lib/structured-data";
 import "./globals.css";
 
 const display = Fraunces({
@@ -30,6 +32,7 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
+        <JsonLd data={siteJsonLd()} />
       </body>
     </html>
   );
