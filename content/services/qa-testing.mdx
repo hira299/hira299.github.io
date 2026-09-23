@@ -1,8 +1,54 @@
 ---
-title: "QA Testing"
-slug: "qa-testing"
+title: B2B SaaS QA
 ---
 
-# QA Testing
+## What this covers
 
-Service overview for QA Testing. Expand this MDX with scope, deliverables, and engagement model.
+I test production SaaS and AI systems for workflow failures, authorization issues, multi-tenant isolation problems, API defects, business-logic errors, data-integrity failures, and release risks.
+
+- Production SaaS QA
+- Exploratory and security-oriented QA
+- Business-logic testing
+- API-level testing
+- Multi-tenant testing
+- Pre-launch QA and regression verification
+
+## Methodology
+
+**End-to-end journeys.** I start from what real users do: sign up, configure, order, pay, report. Each journey runs to completion for each role.
+
+**Exploratory testing.** Structured sessions around risky areas such as permissions, money, state changes, and imports, looking for what the test plan didn't anticipate.
+
+**Network and API inspection.** For every action I check what the browser actually sends and receives. Many serious defects are only visible there.
+
+**Controlled reproduction.** Each defect is reduced to the smallest reliable set of steps, with the request and response that prove it.
+
+**Defect isolation and root-cause analysis.** When several symptoms appear, controlled experiments find the shared cause, so developers fix one thing instead of chasing ten tickets.
+
+**Regression verification.** Fixes are retested, along with the areas around them.
+
+**Coverage areas:** authentication, authorization, tenant isolation, business logic, and data integrity.
+
+## Deliverables
+
+- Exploratory test journeys
+- Defect matrix with severity classification
+- API and network evidence with reproduction steps
+- Root-cause observations
+- Regression verification results
+- Release-readiness findings
+
+A typical pre-launch package: 20 exploratory journeys, API-level investigation, authentication and authorization checks, multi-tenant isolation tests, business-logic testing, a defect matrix, and a final QA report.
+
+## Experience
+
+- Lead QA on PharmaConnect, a multi-tenant B2B pharmaceutical distribution platform: 20 journeys, 60+ defects, 4 critical P1 findings
+- QA on ToolPotion, a 28K+ listing AI tools directory: 100+ defects across two cycles and 190+ dead or fraudulent listings identified
+- QA on AI Academy Cloud, an AI education platform: 20+ defects in one cycle, including an XP/progress exploit
+- 150+ bugs identified across web and mobile apps at Sadiq.ai
+
+## Common questions
+
+### Can you provide pre-launch QA?
+
+Yes. Pre-launch B2B SaaS QA and business-logic audits are my main QA service.

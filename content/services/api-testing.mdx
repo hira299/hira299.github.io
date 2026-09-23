@@ -1,8 +1,33 @@
 ---
-title: "API Testing"
-slug: "api-testing"
+title: API Testing
 ---
 
-# API Testing
+## What this covers
 
-Service overview for API Testing. Expand this MDX with scope, deliverables, and engagement model.
+The interface only shows what the product wants you to do. The API shows what it actually allows. API testing checks the server side of every important action.
+
+## What I test
+
+- **Authentication.** Login, session and token lifecycle, and whether deactivated or changed accounts lose access when they should.
+- **Authorization and permissions.** Whether each role can call only the endpoints and records it's allowed to, including actions the UI hides.
+- **HTTP response validation.** Correct status codes, including responses that reveal whether another tenant's records exist.
+- **Payload validation.** Whether the server rejects missing, malformed, oversized, or tampered fields instead of trusting the client.
+- **Business logic.** Prices, totals, discounts, and limits recalculated on the server rather than accepted from the request.
+- **State transitions.** Whether an order, invoice, or workflow can skip steps, repeat steps, or end up in an impossible state.
+- **API/UI mismatch.** Cases where the UI and the API disagree about what happened.
+- **Error handling.** What the system does on timeouts, retries, and partial failures, especially where money or records are involved.
+- **Backend and integration verification.** Checking the data actually stored matches what the API reported.
+
+## How findings are delivered
+
+Each defect includes the request, the response, the expected behavior, and reproduction steps developers can run with curl or their own tooling. Findings are grouped by severity and root cause.
+
+## Common questions
+
+### What API testing do you perform?
+
+Mostly exploratory, evidence-driven testing of authentication, authorization, validation, state, and business rules. I document regression checks as reproducible requests so they can be rerun after fixes.
+
+### How do you test business logic?
+
+Take the rules the business depends on (pricing, discounts, invoicing, reconciliation, progress, rewards) and try to break them through the API: expired values, repeated requests, out-of-order steps, concurrent updates, and timeouts. Then check the stored data, not only the response.

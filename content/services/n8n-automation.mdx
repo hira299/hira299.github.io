@@ -1,8 +1,47 @@
 ---
-title: "n8n Automation"
-slug: "n8n-automation"
+title: n8n Automation
 ---
 
-# n8n Automation
+## What this covers
 
-Service overview for n8n Automation. Expand this MDX with scope, deliverables, and engagement model.
+I build production n8n workflows and AI agents that connect APIs, databases, business tools, and LLMs while accounting for errors, state, retries, and operational reliability.
+
+- **n8n workflow development** for operations, sales, content, finance, and engineering teams
+- **n8n AI agents** using OpenAI, Groq, Gemini, or Langflow for screening, drafting, scoring, and document parsing
+- **Self-hosted n8n** on Docker or a VPS, removing hosted execution limits
+- **API integrations** with Gmail, Google Calendar, Slack, ClickUp, Airtable, HubSpot, Google Sheets, and custom webhooks
+- **PostgreSQL integrations** for state, audit logs, and dead-letter queues
+
+## Reliability patterns I use
+
+**Error Trigger subworkflows.** Unhandled errors are routed to a dedicated workflow instead of failing silently.
+
+**Dead-letter queues.** Failed payloads are stored in an indexed PostgreSQL table with the execution ID and original data, so they can be replayed once the upstream service recovers.
+
+**Retry with backoff.** Calls to rate-limited APIs (HTTP 429/403) are retried with jittered exponential delays, and a circuit breaker stops retrying after repeated failures.
+
+**State machines.** Multi-step processes move through explicit states, for example `PENDING → IN_FLIGHT → PROCESSED` or `TRIPPED_DLQ`, so concurrent runs can't leave a record half-updated.
+
+**Alert on change, not on every run.** Notifications fire when state changes. On the profitability guardrail this was reported to cut notification noise by 95%.
+
+## Projects built with n8n
+
+- **Autonomous AI email agent:** Gmail API, Groq, and thread-state memory
+- **Profitability guardrail:** PostgreSQL budget state machine with Healthy → Warning → Critical transitions and a DLQ
+- **Agency OS and SEO intelligence agent:** competitor scraping, AI gap analysis, and ClickUp briefs
+- **Cloud cost sentinel:** AWS Cost Explorer anomaly detection with AI diagnosis
+- **Cloud compliance engine:** Docker sidecar audits orchestrated by n8n
+
+## Common questions
+
+### How do you build reliable n8n workflows?
+
+Assume every external call can fail. Store state outside the workflow, handle errors in a dedicated path, retry what is safe to retry, send everything else to a dead-letter queue, and alert on it.
+
+### How do you handle failed n8n executions?
+
+An Error Trigger workflow captures the failure, stores the payload and execution ID in PostgreSQL, and alerts the team in Slack or ClickUp with a link to the trace. Once the cause is fixed, the stored payloads can be replayed.
+
+### Can you migrate from Zapier or Make.com?
+
+Yes. Existing flows can be rebuilt in n8n, usually with better error handling than the original.

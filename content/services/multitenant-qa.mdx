@@ -1,8 +1,39 @@
 ---
-title: "Multi-tenant QA"
-slug: "multitenant-qa"
+title: Multi-Tenant Testing
 ---
 
-# Multi-tenant QA
+## What this covers
 
-Service overview for Multi-tenant QA. Expand this MDX with scope, deliverables, and engagement model.
+In a multi-tenant SaaS product, many customers share one system. The most damaging defects are the ones that let a tenant, role, or session cross a boundary it shouldn't.
+
+## Focus areas
+
+- **Tenant isolation.** One tenant must not be able to read, change, or infer another tenant's data, through the UI or directly through the API.
+- **RBAC.** Each role gets exactly the permissions it needs. I build a role-by-action permission matrix and test every cell that matters.
+- **Access boundaries.** Direct object references, guessed IDs, and hidden endpoints.
+- **Authentication and session persistence.** Whether sessions end when accounts are deactivated, roles change, or passwords reset.
+- **Cross-tenant access.** Including what status codes reveal: a "forbidden" response can confirm a record exists where "not found" would not.
+- **Business logic.** Tenant-specific pricing, promotions, limits, and workflows.
+- **Financial reconciliation.** Totals, invoices, and ledgers checked under retries, timeouts, and concurrent updates.
+- **Data integrity.** Imports that drop rows, deletes that leave orphaned records, and duplicates.
+
+## Example findings
+
+From Lead QA on PharmaConnect, a multi-tenant B2B pharmaceutical distribution platform tested across 6 user roles:
+
+- Deactivated accounts keeping active sessions
+- Cross-tenant responses that revealed whether another tenant's records existed
+- Payment reconciliation that could produce duplicate invoice lines after timeouts
+- Expired promotional pricing still honored at checkout
+
+These were among 4 critical P1 findings in 60+ documented defects.
+
+## Common questions
+
+### How do you test multi-tenant SaaS?
+
+Set up at least two tenants with every role, then try to cross every boundary: tenant to tenant, role to role, and UI to API. Check responses, stored data, and sessions, and record each attempt in a permission matrix so coverage is visible.
+
+### Can you test authentication and authorization?
+
+Yes. That includes session lifecycle, deactivated and changed accounts, role permissions at the API level, and access to other tenants' records.

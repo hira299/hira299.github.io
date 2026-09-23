@@ -1,8 +1,37 @@
 ---
-title: "AI Agents"
-slug: "ai-agents"
+title: AI Agent Development
 ---
 
-# AI Agents
+## What this covers
 
-Service overview for AI Agents. Expand this MDX with scope, deliverables, and engagement model.
+An AI agent is useful when it can hold context, use real data, call tools, and produce output other systems can act on. I build agents for operational work such as email screening, research, lead qualification, and infrastructure assessment.
+
+## How I design agents
+
+**Persistent context.** Conversation or task state is stored outside the model (in a database, sheet, or document store) and loaded before each step. That is what lets an email agent keep a coherent thread across many replies.
+
+**Retrieval over verified data (RAG).** Answers are grounded in a defined source such as resume and portfolio data, live web results, or collected infrastructure evidence, rather than in the model's general knowledge.
+
+**Structured outputs and validation.** Where another system consumes the output, responses are constrained to a schema and checked before use.
+
+**Planner and synthesizer steps.** For research tasks, one model breaks the question into searches, retrieval gathers sources, and a second step writes the answer with citations.
+
+**Error handling and escalation.** Agents fail like any other integration. Failed calls are retried or logged, and cases the agent shouldn't handle alone are handed to a person with context.
+
+**Orchestration.** n8n, Langflow, or LangGraph coordinate the steps, depending on how much custom logic is needed.
+
+## Relevant work
+
+- **Autonomous AI Interview Agent:** n8n, Gmail API, Groq, RAG, and Google Sheets thread memory
+- **Langflow research and citation engine:** planner-synthesizer RAG with Tavily web retrieval
+- **Cloud compliance engine:** Langflow and Groq assessment over collected AWS evidence
+
+## Common questions
+
+### What does AI agent QA include?
+
+Testing the agent as a system: does it keep context across turns, does it answer from the intended source, does its output match the expected structure, what happens when a tool call fails, and does it escalate when it should. I test agents with the same methods I use for SaaS QA.
+
+### How do you test n8n AI agents before production?
+
+Run realistic multi-turn conversations, feed malformed and edge-case inputs, force upstream failures (timeouts, rate limits, bad responses), and check both the output and the stored state after each run.

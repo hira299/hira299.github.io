@@ -1,17 +1,54 @@
 ---
-title: "Cloud Compliance Engine"
-summary: "AI-assisted AWS compliance assessments"
-slug: "cloud-compliance"
+title: Cloud Compliance Automation
 ---
 
-# Cloud Compliance Engine
+## Problem
 
-AI-assisted AWS compliance assessments
+Checking an AWS account's security posture by hand means running many CLI commands, reading JSON output, comparing it against checklists, and writing up findings. It is slow, and it is easy to miss something or lose the evidence behind a conclusion.
 
 ## Context
 
-Production engagement focused on reliability, measurable outcomes, and safe public documentation.
+A self-built production project that automates AWS infrastructure auditing and reporting. It supports internal security and system-health reviews; it is not a formal compliance certification or an independent attestation.
 
-## Outcome
+## My Role
 
-See the corresponding page under `/case-studies/cloud-compliance/` for the live portfolio summary.
+I designed and built the pipeline end-to-end.
+
+## Architecture
+
+1. **Docker sidecar.** A Python and Flask service in an isolated container runs read-only AWS CLI audit commands and normalizes the JSON output.
+2. **Orchestration.** n8n coordinates extraction, evaluation, and storage.
+3. **AI assessment.** A context-injected Langflow agent, using Groq for inference, evaluates the collected configuration against security checkpoints.
+4. **Evidence storage.** Findings, evidence, and remediation roadmaps are stored in Supabase.
+
+## Technology Stack
+
+AWS CLI, Docker, Python, Flask, n8n, Langflow, Groq, Supabase.
+
+## Implementation
+
+- Scans services including IAM, S3, CloudTrail, EC2, and RDS
+- Maps findings to CIS Benchmark controls
+- Scores risk from 0 to 100 and produces a 100-point infrastructure assessment
+- Generates compliance-gap reporting and a remediation roadmap
+
+## Reliability / QA
+
+Extraction is separated from evaluation. The AI step only sees configuration data that was actually collected, and the raw evidence is stored next to each conclusion so findings can be checked.
+
+## Challenges
+
+- Keeping credentials and command execution isolated from the AI layer
+- Making AI assessments traceable to real configuration data
+
+## Solution
+
+Run the AWS CLI in an isolated sidecar, pass only collected evidence to the assessment step, and store evidence with every finding.
+
+## Results
+
+An automated pipeline that collects AWS configuration evidence, scores risk, and produces a structured assessment with remediation guidance. A recorded walkthrough is linked below.
+
+## Lessons Learned
+
+Separating "collect" from "judge" is what makes an AI-assisted audit reviewable. When every conclusion points to stored evidence, people can check it instead of trusting it.

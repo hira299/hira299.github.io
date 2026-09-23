@@ -1,51 +1,217 @@
+export type ServiceSlug =
+  | "ai-automation"
+  | "n8n-automation"
+  | "ai-agents"
+  | "api-integrations"
+  | "qa-testing"
+  | "api-testing"
+  | "multitenant-qa"
+  | "business-logic-testing";
+
 export type Service = {
-  slug: string;
+  slug: ServiceSlug;
   title: string;
-  summary: string;
   href: string;
+  /** Services without their own route point to the closest page. */
+  hasPage: boolean;
+  seoTitle?: string;
+  description: string;
+  summary: string;
+  problems: string[];
+  technologies: string[];
+  proof: string[];
+  caseStudies: string[];
 };
 
 export const services: Service[] = [
   {
     slug: "ai-automation",
     title: "AI Automation",
-    summary:
-      "Production AI workflows with error handling, state tracking, and reliable integrations.",
     href: "/ai-automation/",
+    hasPage: true,
+    seoTitle: "AI Automation Engineer",
+    description:
+      "Production AI automation: workflow orchestration, LLM integrations, state-aware pipelines, retries, and fault tolerance, built with n8n, Make.com, Python, PostgreSQL, and AWS.",
+    summary:
+      "Workflows that connect your tools, APIs, databases, and LLMs, and keep working when inputs are messy or services fail.",
+    problems: [
+      "Repetitive manual work across tools that don't talk to each other",
+      "AI steps that return unparseable or inconsistent output",
+      "Pipelines that silently drop records when an API times out",
+      "No visibility into where a run failed or what state it left behind",
+    ],
+    technologies: ["n8n", "Make.com", "Python", "PostgreSQL", "AWS", "OpenAI", "Gemini", "Groq"],
+    proof: [
+      "28,000+ production records processed through a 7-stage pipeline",
+      "5.6x processing speedup after reworking ETL for concurrency",
+      "12+ Make.com AI automation flows built in production",
+    ],
+    caseStudies: ["28k-record-pipeline", "n8n-email-agent", "cloud-compliance"],
   },
   {
     slug: "n8n-automation",
     title: "n8n Automation",
-    summary:
-      "Event-driven n8n pipelines for email agents, SEO ops, compliance, and business systems.",
     href: "/n8n-automation/",
+    hasPage: true,
+    seoTitle: "n8n Automation Engineer | AI Workflows",
+    description:
+      "Production n8n workflows and AI agents with error handling, retry logic, PostgreSQL state, dead-letter queues, and self-hosted deployment.",
+    summary:
+      "Self-hosted or cloud n8n workflows with explicit state, error routing, and dead-letter queues, so failures are caught instead of lost.",
+    problems: [
+      "Workflows that crash silently and lose the payload",
+      "Rate limits (HTTP 429/403) breaking multi-step runs",
+      "Duplicate alerts and notification noise",
+      "Execution limits and cost on hosted automation plans",
+    ],
+    technologies: ["n8n", "PostgreSQL", "Docker", "ClickUp", "Slack", "Gmail API", "Google Sheets", "Groq", "Gemini"],
+    proof: [
+      "Profitability guardrail with a PostgreSQL state machine and DLQ, reported 95% reduction in notification noise",
+      "Stateful AI email agent with persistent thread memory",
+      "Cloud compliance and cost-anomaly workflows orchestrated in n8n",
+    ],
+    caseStudies: ["n8n-email-agent", "cloud-compliance"],
   },
   {
     slug: "ai-agents",
-    title: "AI Agents",
-    summary:
-      "Stateful agents with memory, tool use, and grounded responses for real operational work.",
+    title: "AI Agent Development",
     href: "/ai-agents/",
+    hasPage: true,
+    seoTitle: "AI Agent Development",
+    description:
+      "AI agents with persistent context, RAG over verified data, structured outputs, validation, and workflow orchestration, built for operational use.",
+    summary:
+      "Agents that keep context across conversations, answer from verified sources, and hand off to people when they should.",
+    problems: [
+      "Chatbots that forget earlier messages in a thread",
+      "Answers that aren't grounded in your own data",
+      "Free-form LLM output breaking downstream steps",
+      "No clear escalation path to a human",
+    ],
+    technologies: ["n8n", "LangGraph", "Langflow", "RAG", "Groq", "Gemini", "OpenAI", "Tavily", "Gmail API"],
+    proof: [
+      "Autonomous AI email agent with thread-state memory and Groq inference",
+      "Planner-synthesizer research agent grounded in live web sources with citations",
+      "JSON-mode enforcement for schema-valid LLM output in production",
+    ],
+    caseStudies: ["n8n-email-agent", "cloud-compliance"],
+  },
+  {
+    slug: "api-integrations",
+    title: "API Integrations",
+    href: "/ai-automation/",
+    hasPage: false,
+    description:
+      "Connecting SaaS tools, internal APIs, databases, and LLM providers with webhooks, authentication, pagination, and failure handling.",
+    summary:
+      "Reliable connections between SaaS tools, databases, and AI providers, with authentication, retries, and logging built in.",
+    problems: [
+      "Tools with APIs but no working integration between them",
+      "Webhooks that fire once and are never retried",
+      "Integrations that break when a provider throttles requests",
+    ],
+    technologies: ["REST APIs", "Webhooks", "OAuth", "n8n", "Make.com", "Python", "FastAPI", "AWS API Gateway"],
+    proof: [
+      "Make.com flows integrating multiple external APIs in production",
+      "Gmail, ClickUp, Slack, WordPress, and AWS integrations across portfolio projects",
+    ],
+    caseStudies: ["n8n-email-agent", "28k-record-pipeline"],
   },
   {
     slug: "qa-testing",
-    title: "QA Testing",
-    summary:
-      "End-to-end journey testing, defect documentation, and release readiness for B2B products.",
+    title: "B2B SaaS QA",
     href: "/qa-testing/",
+    hasPage: true,
+    seoTitle: "B2B SaaS QA & Exploratory Testing",
+    description:
+      "Production SaaS QA: end-to-end journeys, exploratory and security-oriented testing, API-level reproduction, root-cause analysis, and pre-launch release checks.",
+    summary:
+      "Pre-launch and production QA that goes past the UI: journeys, network/API evidence, controlled reproduction, and root cause.",
+    problems: [
+      "Launching without knowing which user journeys actually work",
+      "Bug reports developers can't reproduce",
+      "Security and permission issues found by customers instead of QA",
+      "The same defect reported ten times from different screens",
+    ],
+    technologies: ["Browser DevTools", "Network/API inspection", "curl", "Flutter testing", "Defect matrices"],
+    proof: [
+      "20 end-to-end enterprise journeys completed",
+      "60+ enterprise defects documented with API-level reproduction",
+      "150+ bugs identified at Sadiq.ai",
+    ],
+    caseStudies: ["multitenant-saas-qa"],
   },
   {
     slug: "api-testing",
     title: "API Testing",
-    summary:
-      "API-level reproduction, auth flows, contract checks, and backend behavior validation.",
     href: "/api-testing/",
+    hasPage: true,
+    seoTitle: "API Testing & Backend QA",
+    description:
+      "API and backend testing: authentication, authorization, status codes, payload validation, state transitions, error handling, and API/UI mismatches.",
+    summary:
+      "Testing the API behind the interface: auth, permissions, payloads, status codes, and what happens to state when things fail.",
+    problems: [
+      "The UI hides an action, but the API still allows it",
+      "Wrong status codes that leak information across tenants",
+      "Payloads accepted without server-side validation",
+      "State left inconsistent after timeouts or retries",
+    ],
+    technologies: ["HTTP", "REST", "curl", "Browser network inspection", "JSON schema checks", "PostgreSQL"],
+    proof: [
+      "API-level reproduction evidence for 60+ enterprise defects",
+      "Cross-tenant status-code and authorization findings on a multi-tenant platform",
+    ],
+    caseStudies: ["multitenant-saas-qa"],
   },
   {
     slug: "multitenant-qa",
-    title: "Multi-tenant QA",
-    summary:
-      "Tenant isolation, RBAC, pricing, and business-logic testing for SaaS platforms.",
+    title: "Multi-Tenant Testing",
     href: "/multitenant-qa/",
+    hasPage: true,
+    seoTitle: "Multi-Tenant SaaS QA",
+    description:
+      "Multi-tenant SaaS testing: tenant isolation, RBAC, access boundaries, session persistence, cross-tenant access, financial reconciliation, and data integrity.",
+    summary:
+      "Checking that each tenant, role, and session only sees and changes what it should.",
+    problems: [
+      "One customer able to see or guess another customer's records",
+      "Roles with more permissions than intended",
+      "Deactivated users keeping access",
+      "Totals and ledgers drifting under concurrent updates",
+    ],
+    technologies: ["RBAC matrices", "API testing", "Session/token checks", "Data-integrity checks"],
+    proof: [
+      "20 journeys across 6 user roles on a multi-tenant B2B platform",
+      "4 critical P1 findings including authorization and reconciliation issues",
+    ],
+    caseStudies: ["multitenant-saas-qa"],
+  },
+  {
+    slug: "business-logic-testing",
+    title: "Business Logic Testing",
+    href: "/multitenant-qa/",
+    hasPage: false,
+    description:
+      "Testing pricing, checkout, invoicing, reconciliation, progress tracking, and state rules against how the business actually works.",
+    summary:
+      "Finding the defects that pass every form validation but still cost money: pricing, invoicing, reconciliation, and state rules.",
+    problems: [
+      "Expired promotions still honored at checkout",
+      "Duplicate invoice lines after network timeouts",
+      "Progress or reward systems that can be gamed",
+    ],
+    technologies: ["Exploratory testing", "Controlled reproduction", "Fault injection", "API testing"],
+    proof: [
+      "Pricing, reconciliation, and invoice findings on a B2B distribution platform",
+      "XP/progress exploit identified on an AI education platform",
+    ],
+    caseStudies: ["multitenant-saas-qa"],
   },
 ];
+
+export function getService(slug: ServiceSlug) {
+  const service = services.find((item) => item.slug === slug);
+  if (!service) throw new Error(`Unknown service: ${slug}`);
+  return service;
+}

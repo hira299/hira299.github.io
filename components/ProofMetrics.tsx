@@ -2,16 +2,17 @@ import { profile } from "@/data/profile";
 
 export function ProofMetrics() {
   return (
-    <section className="section">
-      <h2>Proof points</h2>
+    <section className="section" aria-labelledby="proof-title">
+      <h2 id="proof-title">Production proof</h2>
       <p className="section-support">
-        Verified, publicly usable metrics from production automation and QA work.
+        Figures from production automation and QA work. Each one is explained in the case studies.
       </p>
       <ul className="metrics-grid">
         {profile.metrics.map((metric) => (
           <li key={metric.label}>
             <strong>{metric.value}</strong>
-            <span>{metric.label}</span>
+            <span className="metric-label">{metric.label}</span>
+            <span className="metric-context">{metric.context}</span>
           </li>
         ))}
       </ul>

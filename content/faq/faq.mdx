@@ -1,15 +1,36 @@
 ---
 title: FAQ
+items:
+  - q: Can you build production n8n workflows?
+    a: Yes. I build n8n workflows with explicit state, error-handling subworkflows, retries, and dead-letter queues, so failures are caught and can be replayed rather than lost. Examples include a PostgreSQL budget state machine, an AI email agent, and cloud cost and compliance workflows.
+  - q: Can you build n8n AI agents?
+    a: Yes. I've built n8n agents with Gmail API ingestion, persistent thread memory, and Groq inference, plus AI steps using OpenAI, Gemini, and Langflow for screening, drafting, scoring, and assessments.
+  - q: Can you integrate n8n with APIs?
+    a: Yes. That includes Gmail, Google Calendar, Google Sheets, Slack, ClickUp, Airtable, HubSpot, AWS, and custom REST APIs or webhooks, with authentication and rate-limit handling.
+  - q: Can you connect n8n to PostgreSQL?
+    a: Yes. I use PostgreSQL with n8n for workflow state, audit logs, and dead-letter queues. The profitability guardrail project tracks budget states in PostgreSQL and isolates malformed payloads in a DLQ table.
+  - q: Can you add retry and error handling?
+    a: Yes. Error Trigger subworkflows, jittered exponential backoff for rate-limited APIs, circuit breakers after repeated failures, and a dead-letter queue with alerts for anything that still fails.
+  - q: Can you self-host n8n?
+    a: Yes. I set up self-hosted n8n on Docker or a VPS, which removes hosted execution limits. The AI email agent runs on self-hosted n8n exposed through a Cloudflare Tunnel.
+  - q: Can you test AI agents?
+    a: Yes. I test whether an agent keeps context across turns, answers from the intended source, returns output in the expected structure, handles failed tool calls, and escalates when it should.
+  - q: Can you perform API testing?
+    a: Yes. Authentication, authorization, status codes, payload validation, state transitions, business rules, and API/UI mismatches, with every defect documented as a reproducible request and response.
+  - q: Can you test multi-tenant SaaS?
+    a: Yes. I led QA on PharmaConnect, a multi-tenant B2B pharmaceutical distribution platform, covering 20 end-to-end journeys across 6 user roles, with 60+ defects documented and 4 critical P1 findings.
+  - q: Can you test authentication and authorization?
+    a: Yes. Session and token lifecycle, deactivated and changed accounts, role permissions at the API level, and cross-tenant access, backed by an RBAC permission matrix.
+  - q: Can you perform business-logic testing?
+    a: Yes. Pricing, promotions, checkout, invoicing, payment reconciliation, and progress or reward systems, tested through the API under repeated requests, timeouts, and out-of-order steps.
+  - q: Can you provide pre-launch QA?
+    a: Yes. A typical pre-launch package includes 20 exploratory journeys, API-level investigation, authentication and authorization checks, multi-tenant isolation tests, business-logic testing, a defect matrix, and a final QA report.
+  - q: Do you work remotely with US and international teams?
+    a: Yes. I'm based in Karachi, Pakistan, and work remotely with international clients, with working hours that overlap US Eastern and Pacific business hours.
+  - q: Do I need to provide my own API keys?
+    a: Yes. For LLMs and third-party services you provide your own accounts and keys, so usage costs and ownership stay with you. Credentials stay in your accounts.
+  - q: How are projects delivered?
+    a: Every automation delivery includes documentation and a Loom video walkthrough. QA engagements end with a defect matrix, reproduction evidence, and a findings report.
+  - q: Can you name the clients you've worked with?
+    a: Only where I have permission. Confidential client details, internal URLs, data, and payloads are never published.
 ---
-
-## What kind of work do you take on?
-
-Production n8n automation, AI agents, API integrations, backend/API testing, and multi-tenant B2B SaaS QA.
-
-## Do you work remotely?
-
-Yes. Remote and international projects are the default.
-
-## Can you share client names?
-
-Only when explicitly authorized.

@@ -1,17 +1,61 @@
 ---
-title: "Multi-tenant SaaS QA"
-summary: "Enterprise QA for auth, isolation, and business logic"
-slug: "multitenant-saas-qa"
+title: Multi-Tenant SaaS QA
 ---
 
-# Multi-tenant SaaS QA
+## Problem
 
-Enterprise QA for auth, isolation, and business logic
+PharmaConnect, a multi-tenant B2B pharmaceutical distribution and logistics platform, needed thorough verification before release. Several companies share the platform, each with multiple roles, and money moves through pricing, checkout, invoicing, and payment reconciliation. Defects in that kind of system don't only break screens; they leak data between tenants or corrupt financial records.
 
 ## Context
 
-Production engagement focused on reliability, measurable outcomes, and safe public documentation.
+A production engagement where I led QA as part of my role at TechPotion.ai. Specific internal details, URLs, data, and payloads are not published here.
 
-## Outcome
+## My Role
 
-See the corresponding page under `/case-studies/multitenant-saas-qa/` for the live portfolio summary.
+Lead QA: planning and running end-to-end journeys, API-level investigation, security-oriented testing, and defect reporting with reproduction evidence.
+
+## Architecture
+
+The platform serves several tenant types and 6 user roles across administration, distribution, pharmacy, delivery, accounting, and public access. Testing focused on the boundaries between them: tenant to tenant, role to role, and UI to API.
+
+## Technology Stack
+
+Exploratory testing, browser network/API inspection, curl-based reproduction, an RBAC permission matrix, and data-integrity checks.
+
+## Implementation
+
+- **End-to-end journeys.** 20 complete journeys executed to 100% completion across all 6 roles.
+- **API-level evidence.** Every defect documented with request/response evidence, not only screenshots.
+- **Authentication and authorization.** Session and account-state checks, and role-by-role permission boundaries.
+- **Multi-tenant isolation.** Cross-tenant access attempts, including what status codes reveal about other tenants' records.
+- **Business logic.** Pricing, checkout, invoicing, and reconciliation, including behavior under timeouts.
+- **Data integrity.** Catalog imports, relational deletes, and duplicated or orphaned records.
+- **Root-cause analysis.** Controlled experiments to find where a discrepancy actually comes from rather than reporting symptoms.
+
+## Reliability / QA
+
+Findings were classified by severity (P1 to P4) and delivered with reproduction steps developers could run directly, plus regression verification after fixes.
+
+## Challenges
+
+- Many roles and tenants, so the number of permission combinations is large
+- Financial issues that only appear under specific timing, such as network timeouts
+- Symptoms that look like separate bugs but share one cause
+
+## Solution
+
+Journey-based coverage for breadth, a permission matrix for roles and tenants, API-level reproduction for every finding, and controlled experiments for root cause.
+
+## Results
+
+- 20 end-to-end journeys completed
+- 60+ defects documented with API-level reproduction evidence
+- 4 critical P1 issues identified, in these areas:
+  - deactivated accounts keeping active sessions (authorization)
+  - payment reconciliation that could produce duplicate invoice lines after timeouts
+  - expired promotional pricing still honored at checkout
+  - cross-tenant responses that revealed whether another tenant's records existed
+
+## Lessons Learned
+
+The most serious defects sat at boundaries: between tenants, between roles, and between what the UI shows and what the API allows. Testing those boundaries directly finds issues that journey testing alone would miss.

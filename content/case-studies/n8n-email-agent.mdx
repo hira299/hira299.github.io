@@ -1,17 +1,53 @@
 ---
-title: "n8n Email Agent"
-summary: "Stateful AI email agent for recruiter screening"
-slug: "n8n-email-agent"
+title: Autonomous AI Email Agent
 ---
 
-# n8n Email Agent
+## Problem
 
-Stateful AI email agent for recruiter screening
+Screening email by hand is slow. Recruiter questions, lead inquiries, and Tier-1 requests arrive at all hours, and most of them need the same kind of answer. Simple AI email bots help less than they should for two reasons: they are often slow to respond, and they forget what was said earlier in the thread, so replies repeat themselves or contradict earlier messages.
 
 ## Context
 
-Production engagement focused on reliability, measurable outcomes, and safe public documentation.
+This is a self-built production workflow. It handles recruiter screening and technical Q&A over email, using verified resume and portfolio information as its knowledge source.
 
-## Outcome
+## My Role
 
-See the corresponding page under `/case-studies/n8n-email-agent/` for the live portfolio summary.
+I designed and built the whole workflow: ingestion, thread memory, the AI steps, and the reply path.
+
+## Architecture
+
+The agent is an event-driven n8n workflow with four parts:
+
+1. **Ingestion.** New messages arrive through the Gmail API. The self-hosted n8n instance is exposed through a Cloudflare Tunnel, so webhooks work without a public IP.
+2. **Thread-state memory.** Every thread's history is stored in Google Sheets and read back before each reply, so the model sees the whole conversation, not only the latest message.
+3. **Grounded answering.** Answers are drawn from verified resume and portfolio information (a RAG step) to reduce the risk of the model making things up.
+4. **Inference and drafting.** Groq runs the screening and reply-drafting steps, keeping responses fast.
+
+## Implementation
+
+- Gmail API trigger and message parsing in n8n
+- Thread lookup and update against the Google Sheets store on every message
+- Screening step that classifies the inquiry before drafting
+- Draft generation for routine questions; higher-value leads are flagged for a person with context notes
+
+## Reliability / QA
+
+The main failure mode for an email agent is losing context. Keeping state outside the model call, and reading it back on every message, is what makes multi-turn threads coherent. Grounding answers in a fixed, verified source keeps replies consistent with what is actually true.
+
+## Challenges
+
+- Keeping replies consistent across long threads
+- Answering technical questions without inventing details
+- Deciding which messages should be drafted automatically and which need a person
+
+## Solution
+
+Persist thread state explicitly, ground answers in verified data, and split the flow into screening, drafting, and escalation so each step has one job.
+
+## Results
+
+A working, stateful email agent that screens incoming messages, keeps multi-turn context, and drafts replies from verified information. A recorded walkthrough is linked below.
+
+## Lessons Learned
+
+Conversation memory is a data problem before it's a model problem. Once thread state is stored and retrieved deliberately, the model's job becomes much narrower and more predictable.

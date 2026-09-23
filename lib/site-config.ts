@@ -8,5 +8,5 @@ export const siteConfig = {
   location: "Karachi, Sindh, Pakistan",
   role: "AI Automation & QA Engineer",
   positioning: "n8n AI Automation | AI Agents | API Testing | B2B SaaS QA",
-  email: "hire@hiraahmed.dev",
+  email: "hira229922@gmail.com",
 } as const;

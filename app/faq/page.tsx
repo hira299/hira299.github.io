@@ -1,9 +1,12 @@
 import { FAQ } from "@/components/FAQ";
+import { HireMe } from "@/components/HireMe";
+import { getFaqItems } from "@/lib/content";
 import { buildMetadata } from "@/lib/metadata";
 
 export const metadata = buildMetadata({
-  title: "FAQ",
-  description: "Common questions about hiring Hira Ahmed for AI automation and QA work.",
+  title: "FAQ: n8n, AI Agents & SaaS QA",
+  description:
+    "Answers about production n8n workflows, AI agents, API integrations, self-hosting, API testing, multi-tenant SaaS QA, and pre-launch testing.",
   path: "/faq/",
 });
 
@@ -11,13 +14,12 @@ export default function FaqPage() {
   return (
     <>
       <section className="page-header">
-        <p className="eyebrow">Questions</p>
-        <h1>FAQ</h1>
-        <p className="support">
-          Straight answers about scope, remote work, confidentiality, and delivery style.
-        </p>
+        <p className="eyebrow">FAQ</p>
+        <h1>Questions clients ask</h1>
+        <p className="lede">What I build, what I test, and how engagements work.</p>
       </section>
-      <FAQ />
+      <FAQ items={getFaqItems()} title="Answers" />
+      <HireMe />
     </>
   );
 }

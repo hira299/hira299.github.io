@@ -1,17 +1,50 @@
 ---
-title: "AWS Cost Optimization"
-summary: "Cloud optimization that reduced monthly AWS spend"
-slug: "aws-cost-optimization"
+title: AWS Cost Optimization
 ---
 
-# AWS Cost Optimization
+## Problem
 
-Cloud optimization that reduced monthly AWS spend
+The AWS infrastructure behind a 28,000+ record platform cost more each month than its workload justified. Some of that spend came from how requests and background jobs were executed, not from the amount of real work being done.
 
 ## Context
 
-Production engagement focused on reliability, measurable outcomes, and safe public documentation.
+Production work at TechPotion.ai, on the same platform as the 28K+ record pipeline.
 
-## Outcome
+## My Role
 
-See the corresponding page under `/case-studies/aws-cost-optimization/` for the live portfolio summary.
+Backend & Automation Engineer, responsible for the cloud automation and the data layer.
+
+## Architecture
+
+The platform ran on EC2, Lambda, EventBridge, SQS, RDS PostgreSQL, API Gateway, S3, VPC, IAM, and CodeBuild.
+
+## Technology Stack
+
+AWS Lambda, API Gateway, EventBridge, SQS, RDS PostgreSQL, EC2, S3, IAM, CodeBuild.
+
+## Implementation
+
+- **Execution flow.** Re-engineered API Gateway flows and fixed execution loops that were triggering unnecessary work.
+- **Decoupling.** Moved background work onto queues so workers run when there is work, not on a fixed loop.
+- **Queries.** Optimized PostgreSQL queries, including GIN indexing on JSONB columns for unstructured data.
+
+## Reliability / QA
+
+The pipeline records every record's stage in PostgreSQL (see the 28K+ record case study). That makes it possible to change how and when work is scheduled without losing track of which records have been processed.
+
+## Challenges
+
+- Execution loops and polling that triggered work nobody needed
+- Reducing spend without disrupting a production pipeline
+
+## Solution
+
+Treat cost as a symptom of execution behavior: remove wasted invocations, queue background work, and make the expensive queries cheaper.
+
+## Results
+
+34% reduction in monthly AWS infrastructure costs.
+
+## Lessons Learned
+
+Start cost work by looking at execution behavior: what runs, how often, and why. That gives clearer targets than resizing infrastructure first.

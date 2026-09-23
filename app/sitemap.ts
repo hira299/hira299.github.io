@@ -20,7 +20,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${siteConfig.url}${path || "/"}`,
       lastModified: new Date(),
     })),
-    ...services.map((service) => ({
+    ...services.filter((service) => service.hasPage).map((service) => ({
       url: `${siteConfig.url}${service.href}`,
       lastModified: new Date(),
     })),

@@ -26,7 +26,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${display.variable} ${body.variable}`}>
         <Navbar />
-        <main>{children}</main>
+        <main id="main" tabIndex={-1}>
+          {children}
+        </main>
         <Footer />
       </body>
     </html>

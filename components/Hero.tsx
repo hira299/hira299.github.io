@@ -1,20 +1,28 @@
 import Link from "next/link";
 import { profile } from "@/data/profile";
+import { getLink } from "@/data/social-links";
 
 export function Hero() {
+  const github = getLink("GitHub");
+
   return (
-    <section className="hero">
+    <section className="hero" aria-labelledby="hero-title">
       <p className="eyebrow">{profile.role}</p>
-      <h1>{profile.name}</h1>
+      <h1 id="hero-title">{profile.name}</h1>
       <p className="lede">{profile.positioning}</p>
-      <p className="support">{profile.shortBio}</p>
+      <p className="support">{profile.statement}</p>
       <div className="cta-row">
         <Link href="/contact/" className="button primary">
-          Hire me
+          Hire Me
         </Link>
         <Link href="/case-studies/" className="button secondary">
-          View case studies
+          View Case Studies
         </Link>
+        {github ? (
+          <a href={github.href} className="button ghost" target="_blank" rel="noopener noreferrer">
+            View GitHub
+          </a>
+        ) : null}
       </div>
     </section>
   );

@@ -1,17 +1,59 @@
 ---
-title: "28K Record Pipeline"
-summary: "Fault-tolerant ETL across 28,000+ records"
-slug: "28k-record-pipeline"
+title: 28K+ Record AI Tools Pipeline
 ---
 
-# 28K Record Pipeline
+## Problem
 
-Fault-tolerant ETL across 28,000+ records
+An AI tools directory with more than 28,000 listings needed its data collected, cleaned, enriched, and published continuously. Extraction was slow, anti-bot protection blocked requests, listing URLs broke over time, and a failure partway through a run could leave records in an unknown state.
 
 ## Context
 
-Production engagement focused on reliability, measurable outcomes, and safe public documentation.
+Production work at TechPotion.ai, where I built and maintained the directory end-to-end as Backend & Automation Engineer.
 
-## Outcome
+## My Role
 
-See the corresponding page under `/case-studies/28k-record-pipeline/` for the live portfolio summary.
+I owned the data pipeline: scrapers, ETL, AI enrichment, state tracking, the URL-healing service, and the cloud automation around them.
+
+## Architecture
+
+- **Extraction layer.** Python scrapers using BeautifulSoup, Playwright, and Selenium across 10 platforms, with 20+ extraction methods.
+- **Parallel ETL.** A fault-tolerant system with 50 concurrent workers, dynamic rate limiting, circuit breakers, and anti-bot countermeasures.
+- **URL healing.** A service that detects broken listing links and diagnoses or recovers them.
+- **7-stage content pipeline.** Sequential LLM calls for enrichment, with every record's stage tracked in PostgreSQL.
+- **Serving.** A multilingual Next.js SSR frontend with FastAPI backend services.
+
+## Technology Stack
+
+Python, Playwright, Selenium, BeautifulSoup, PostgreSQL, OpenRouter with Gemini Flash, AWS (EC2, Lambda, EventBridge, SQS, RDS PostgreSQL, API Gateway, S3), Next.js, FastAPI.
+
+## Implementation
+
+- Replaced sequential batch processing with concurrent workers and per-source rate limits
+- Circuit breakers stop hammering a source once it starts failing
+- PostgreSQL status tracking records which stage each record has reached, so failed runs resume instead of restarting
+- JSON-mode enforcement on LLM calls so enrichment output always matches the expected schema
+
+## Reliability / QA
+
+State lives in the database, not in the worker. A timeout or crash leaves a record at a known stage instead of half-written. Schema-enforced LLM output means enrichment failures surface as errors rather than as corrupted listings. I also ran structured QA across authentication, XP tracking, certificates, and Content Studio components on the platform.
+
+## Challenges
+
+- Anti-bot blocking and rate limits across many external sources
+- Broken or moved listing URLs at scale
+- Keeping LLM enrichment output parseable across tens of thousands of records
+
+## Solution
+
+Concurrency with guardrails (rate limiting and circuit breakers), explicit per-record state, a dedicated URL-healing service, and schema-enforced AI output.
+
+## Results
+
+- 28,000+ production records processed and maintained
+- 5.6x processing speedup across 28K+ URLs, as reported
+- 95% reported extraction success rate across 28K+ URLs
+- The same platform's AWS costs were later reduced by 34% (see the AWS cost case study)
+
+## Lessons Learned
+
+Speed came from concurrency, but reliability came from state tracking. Both were needed: faster workers alone would only have made failures happen faster.

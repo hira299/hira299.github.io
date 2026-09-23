@@ -1,8 +1,39 @@
 ---
-title: "AI Automation"
-slug: "ai-automation"
+title: AI Automation
 ---
 
-# AI Automation
+## What this covers
 
-Service overview for AI Automation. Expand this MDX with scope, deliverables, and engagement model.
+AI automation here means production workflows that move data between your tools, call LLMs where they add value, and keep a clear record of what happened. The AI step is usually the smallest part. Most of the work is in the plumbing around it: inputs, state, retries, and outputs other systems can rely on.
+
+Typical work includes:
+
+- **Workflow automation** across SaaS tools such as ClickUp, Slack, Airtable, HubSpot, Gmail, and Google Sheets
+- **API orchestration** between internal services, third-party APIs, and databases
+- **LLM integrations** for classification, enrichment, drafting, and summarization, with JSON-mode output where downstream steps need structure
+- **Data pipelines** that scrape, clean, enrich, and publish records at scale
+- **Business-process automation** such as content pipelines, lead routing, and reporting
+
+## How I build for reliability
+
+**State-aware workflows.** Each record or run has an explicit status stored in a database, usually PostgreSQL. If something fails halfway, the system knows where it stopped and can resume.
+
+**Fault tolerance.** Rate limiting, circuit breakers, and concurrency limits keep one failing service from taking down the whole run.
+
+**Retries and dead-letter queues.** Transient failures are retried with backoff. Payloads that keep failing go to a dead-letter queue instead of disappearing, so they can be inspected and replayed.
+
+**Structured AI output.** LLM responses are constrained to a schema so a bad response becomes a visible error, not a corrupted record.
+
+## Tools
+
+n8n and Make.com for orchestration; Python for pipelines and scrapers; PostgreSQL for state; AWS (Lambda, EventBridge, SQS, RDS, API Gateway) for cloud automation; OpenAI, Gemini, Groq, and OpenRouter for model calls.
+
+## Common questions
+
+### How do you prevent workflow data loss?
+
+By never letting a payload exist only in memory. Every run writes its state to a database, failures route to a dead-letter queue with the original payload, and alerts fire when something lands there. A failure becomes a row you can inspect and replay.
+
+### n8n or Make.com?
+
+Both work well. n8n suits self-hosting, custom code, and database-heavy workflows; Make.com is quick for SaaS-to-SaaS flows. I've built production systems in both and will recommend one based on your constraints.
