@@ -67,12 +67,7 @@ export const profile = {
     {
       value: "20",
       label: "End-to-end QA journeys",
-      context: "Enterprise multi-tenant B2B platform",
-    },
-    {
-      value: "11",
-      label: "P1 defects",
-      context: "Security and business-logic issues found during QA",
+      context: "On PharmaConnect, a multi-tenant B2B platform",
     },
     {
       value: "105",

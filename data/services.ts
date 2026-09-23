@@ -136,7 +136,7 @@ export const services: Service[] = [
     ],
     technologies: ["Browser DevTools", "Network/API inspection", "curl", "Flutter testing", "Defect matrices"],
     proof: [
-      "20 end-to-end enterprise journeys completed",
+      "20 end-to-end journeys completed on PharmaConnect",
       "678+ defects identified and documented across QA engagements",
       "80+ defects documented with API-level reproduction on one enterprise B2B platform",
     ],
@@ -184,8 +184,8 @@ export const services: Service[] = [
     ],
     technologies: ["RBAC matrices", "API testing", "Session/token checks", "Data-integrity checks"],
     proof: [
-      "20 journeys across 6 user roles on a multi-tenant B2B platform",
-      "11 P1 defects including authorization bypasses, authentication gaps, and payment reconciliation issues",
+      "20 journeys across 6 user roles on PharmaConnect, a multi-tenant B2B platform",
+      "11 P1 defects on PharmaConnect, including authorization bypasses, authentication gaps, and payment reconciliation issues",
     ],
     caseStudies: ["multitenant-saas-qa"],
   },
