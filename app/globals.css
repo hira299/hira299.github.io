@@ -722,7 +722,7 @@ h4 {
 
 .metrics-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 165px), 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
   gap: 0.85rem;
 }
 
@@ -737,10 +737,12 @@ h4 {
 
 .metrics-grid strong {
   display: block;
+  overflow: visible;
   font-family: var(--font-display);
   font-size: 1.9rem;
   font-variant-numeric: tabular-nums;
-  line-height: 1.1;
+  line-height: 1.25;
+  padding-right: 0.35em;
   background: linear-gradient(120deg, #ede9fe, #a78bfa);
   -webkit-background-clip: text;
   background-clip: text;
