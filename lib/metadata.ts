@@ -25,6 +25,9 @@ export function buildMetadata({
       canonical: url,
     },
     authors: [{ name: siteConfig.name, url: siteConfig.url }],
+    verification: {
+      google: "dGuZOCurHrItUEG9X6wBYQZL5OC3xWw-ZbekE4Tb7G0",
+    },
     creator: siteConfig.name,
     icons: {
       icon: [
