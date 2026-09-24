@@ -12,13 +12,13 @@ items:
   - q: Can you add retry and error handling?
     a: Yes. Error Trigger subworkflows, jittered exponential backoff for rate-limited APIs, circuit breakers after repeated failures, and a dead-letter queue with alerts for anything that still fails.
   - q: Can you self-host n8n?
-    a: Yes. I set up self-hosted n8n on Docker or a VPS, which removes hosted execution limits. The AI email agent runs on self-hosted n8n exposed through a Cloudflare Tunnel.
+    a: Yes. I set up self-hosted n8n on Docker or a VPS, which gives you control over the infrastructure, how workflows execute, and how the instance scales. The AI email agent runs on self-hosted n8n exposed through a Cloudflare Tunnel.
   - q: Can you test AI agents?
     a: Yes. I test whether an agent keeps context across turns, answers from the intended source, returns output in the expected structure, handles failed tool calls, and escalates when it should.
   - q: Can you perform API testing?
     a: Yes. Authentication, authorization, status codes, payload validation, state transitions, business rules, and API/UI mismatches, with every defect documented as a reproducible request and response.
   - q: Can you test multi-tenant SaaS?
-    a: Yes. I led QA on PharmaConnect, a multi-tenant B2B pharmaceutical distribution platform, covering 20 end-to-end journeys across 6 user roles, with 80+ defects documented and 11 critical P1 findings identified during enterprise QA and security testing. Across all QA engagements I have identified and documented 678+ defects.
+    a: Yes. I led QA on PharmaConnect, a multi-tenant B2B pharmaceutical distribution platform, covering 20 end-to-end journeys across 6 user roles, with 80+ defects documented with API-level evidence and 11 critical P1 findings identified during enterprise QA and security testing. Across all QA engagements I have identified and documented 678+ defects.
   - q: Can you test authentication and authorization?
     a: Yes. Session and token lifecycle, deactivated and changed accounts, role permissions at the API level, and cross-tenant access, backed by an RBAC permission matrix.
   - q: Can you perform business-logic testing?

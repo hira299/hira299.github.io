@@ -159,6 +159,7 @@ export const navMenus: NavMenu[] = [
           { label: "Experience", href: "/about/#experience" },
           { label: "Research & Credentials", href: "/research/" },
           { label: "FAQ", href: "/faq/" },
+          { label: "Contact", href: "/contact/" },
         ],
       },
     ],
