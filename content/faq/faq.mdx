@@ -2,7 +2,7 @@
 title: FAQ
 items:
   - q: Can you build production n8n workflows?
-    a: Yes. I build n8n workflows with explicit state, error-handling subworkflows, retries, and dead-letter queues, so failures are caught and can be replayed rather than lost. Examples include a PostgreSQL budget state machine, an AI email agent, and cloud cost and compliance workflows.
+    a: Yes. I build n8n workflows with explicit state, error-handling subworkflows, retries, and dead-letter queues, so failures are caught and can be replayed rather than lost. Examples include a PostgreSQL budget state machine, the Autonomous AI Email Agent, and cloud cost and compliance workflows.
   - q: Can you build n8n AI agents?
     a: Yes. I've built n8n agents with Gmail API ingestion, persistent thread memory, and Groq inference, plus AI steps using OpenAI, Gemini, and Langflow for screening, drafting, scoring, and assessments.
   - q: Can you integrate n8n with APIs?
@@ -12,7 +12,7 @@ items:
   - q: Can you add retry and error handling?
     a: Yes. Error Trigger subworkflows, jittered exponential backoff for rate-limited APIs, circuit breakers after repeated failures, and a dead-letter queue with alerts for anything that still fails.
   - q: Can you self-host n8n?
-    a: Yes. I set up self-hosted n8n on Docker or a VPS, which gives you control over the infrastructure, how workflows execute, and how the instance scales. The AI email agent runs on self-hosted n8n exposed through a Cloudflare Tunnel.
+    a: Yes. I set up self-hosted n8n on Docker or a VPS, which gives you control over the infrastructure, how workflows execute, and how the instance scales. The Autonomous AI Email Agent runs on self-hosted n8n exposed through a Cloudflare Tunnel.
   - q: Can you test AI agents?
     a: Yes. I test whether an agent keeps context across turns, answers from the intended source, returns output in the expected structure, handles failed tool calls, and escalates when it should.
   - q: Can you perform API testing?

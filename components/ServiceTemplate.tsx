@@ -41,6 +41,17 @@ export async function ServiceTemplate({ slug }: { slug: ServiceSlug }) {
 
       <article className="section prose">{body}</article>
 
+      {service.resource ? (
+        <p className="support">
+          <a href={service.resource.href} target="_blank" rel="noopener noreferrer">
+            {service.resource.label}
+            <span className="visually-hidden"> (opens in a new tab)</span>
+          </a>
+          <br />
+          {service.resource.summary}
+        </p>
+      ) : null}
+
       <section className="section">
         <h2>Technologies</h2>
         <ul className="chip-list">

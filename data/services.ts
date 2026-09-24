@@ -21,6 +21,11 @@ export type Service = {
   technologies: string[];
   proof: string[];
   caseStudies: string[];
+  resource?: {
+    href: string;
+    label: string;
+    summary: string;
+  };
 };
 
 export const services: Service[] = [
@@ -71,6 +76,12 @@ export const services: Service[] = [
       "Cloud compliance and cost-anomaly workflows orchestrated in n8n",
     ],
     caseStudies: ["n8n-email-agent", "cloud-compliance"],
+    resource: {
+      href: "https://github.com/hira299/n8n-production-resilience-patterns",
+      label: "Production Resilience Patterns →",
+      summary:
+        "Production-oriented n8n reliability patterns for retries, PostgreSQL state, dead-letter queues, idempotency, rate limiting, concurrency, replay, and failure handling.",
+    },
   },
   {
     slug: "ai-agents",
@@ -188,6 +199,12 @@ export const services: Service[] = [
       "11 critical P1 findings on PharmaConnect, including authorization bypasses, authentication gaps, and payment reconciliation issues",
     ],
     caseStudies: ["multitenant-saas-qa"],
+    resource: {
+      href: "https://github.com/hira299/enterprise-multitenant-qa-matrix",
+      label: "QA Matrix →",
+      summary:
+        "Reusable QA matrices, checklists, templates, and examples for multi-tenant SaaS, RBAC, API testing, business logic, regression, payments, and AI workflows.",
+    },
   },
   {
     slug: "business-logic-testing",

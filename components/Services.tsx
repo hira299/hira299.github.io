@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ServiceResourceLink } from "@/components/ServiceResourceLink";
 import { services } from "@/data/services";
 
 export function Services({
@@ -20,6 +21,11 @@ export function Services({
             </h3>
             <p>{service.summary}</p>
             <p className="tags">{service.technologies.slice(0, 5).join(" · ")}</p>
+            {service.resource ? (
+              <p className="link-row">
+                <ServiceResourceLink href={service.resource.href} label={service.resource.label} />
+              </p>
+            ) : null}
           </li>
         ))}
       </ul>
