@@ -58,7 +58,7 @@ export const experience: ExperienceItem[] = [
   {
     company: "TechPotion.ai",
     role: "Backend & Automation Engineer",
-    period: "Jan 2025 – Sep 2026",
+    period: "Jan 2025 – Jan 2026",
     location: "Remote · Malaysia-based company",
     summary: "Built and ran the production AI pipeline, automation, and cloud systems behind a 28,000+ listing AI tools directory.",
     highlights: [
