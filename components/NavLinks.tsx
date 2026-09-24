@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useCallback, useEffect, useRef, useState, type PointerEvent as ReactPointerEvent } from "react";
+import { Fragment, useCallback, useEffect, useRef, useState, type PointerEvent as ReactPointerEvent } from "react";
 import { navMenus } from "@/data/navigation";
 
 const DESKTOP_QUERY = "(min-width: 821px)";
@@ -132,12 +132,29 @@ export function NavLinks() {
                               onClick={closeAll}
                             >
                               <span>{link.label}</span>
-                              {link.description ? <span className="mega-desc">{link.description}</span> : null}
+                              {link.description ? (
+                                <>
+                                  {" "}
+                                  <span className="mega-desc">{link.description}</span>
+                                </>
+                              ) : null}
                             </Link>
                           </li>
                         ))}
                       </ul>
-                      {group.topics ? <p className="mega-topics">{group.topics.join(" · ")}</p> : null}
+                      {group.topics ? (
+                        <p className="mega-topics">
+                          {group.topics.map((topic, index) => (
+                            <Fragment key={topic}>
+                              {index > 0 ? " " : null}
+                              <span className="mega-topic">
+                                {topic}
+                                {index < group.topics!.length - 1 ? " ·" : null}
+                              </span>
+                            </Fragment>
+                          ))}
+                        </p>
+                      ) : null}
                     </div>
                   ))}
                 </div>

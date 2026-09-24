@@ -375,6 +375,10 @@ main {
   font-size: 0.8rem;
 }
 
+.mega-topic {
+  white-space: nowrap;
+}
+
 .mega-footer {
   display: flex;
   flex-wrap: wrap;

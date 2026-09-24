@@ -5,7 +5,7 @@ import { buildMetadata } from "@/lib/metadata";
 const study = getCaseStudy("sentinel-mesh");
 
 export const metadata = buildMetadata({
-  title: `${study.title} Case Study`,
+  title: "Sentinel-Mesh Research Case Study: Verified Cloud Remediation",
   description: study.description,
   path: study.href,
 });

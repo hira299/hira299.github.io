@@ -9,7 +9,7 @@ import { collectionJsonLd } from "@/lib/structured-data";
 export const metadata = buildMetadata({
   title: "Case Studies",
   description:
-    "Professional case studies on a 28K+ record AI enrichment pipeline, AWS cost optimization, and multi-tenant B2B SaaS QA, plus AI engineering builds and the Sentinel-Mesh research case study.",
+    "Professional case studies (28K+ record AI pipeline, AWS cost optimization, multi-tenant B2B SaaS QA), AI engineering builds, and Sentinel-Mesh research.",
   path: "/case-studies/",
 });
 

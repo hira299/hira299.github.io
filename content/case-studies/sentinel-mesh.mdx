@@ -23,10 +23,11 @@ Sentinel-Mesh explores that by combining three things: LLM remediation generatio
 ## Architecture
 
 1. **Parsing.** Terraform HCL is converted to a JSON structure with python-hcl2.
-2. **Initial verification.** A Z3-based verifier checks the configuration against the Cloud Perimeter Model (CPM): invariants for network isolation, encryption at rest and in transit, and defense in depth. A configuration that passes needs no patch.
+2. **Initial verification.** A Z3-based verifier checks every resource. Per-resource security checks are encoded as Z3 queries over the Cloud Perimeter Model (CPM), which covers network isolation, encryption at rest and in transit, and defense in depth. Dedicated Z3 reachability checks look for IAM privilege-escalation paths and security groups that expose critical ports. A configuration that passes needs no patch.
 3. **Patch generation.** On a violation, an LLM agent receives the original configuration and the verifier's violation message, and proposes a remediated configuration.
-4. **Patch verification.** The HCL is extracted from the model response, re-parsed, and checked by a dual-solver Z3 patch proof.
+4. **Patch verification.** The HCL is extracted from the model response, re-parsed, and checked again by the full verifier. That re-check alone decides whether the patch passes.
 5. **Feedback loop.** A rejected patch's verdict becomes the context for the next attempt, for up to 5 attempts. A case with no verified patch after 5 attempts is recorded as a persistent failure.
+6. **Proof certificate.** For encryption and network-exposure violations, an accepted patch also goes through a dual-solver refinement proof over the CPM. The proof annotates the result; it never overrides the verifier's decision.
 
 <SentinelMeshDiagram />
 
@@ -36,9 +37,9 @@ Patch generation is zero-shot and multi-provider: the agent supports Cerebras, G
 
 ## Formal Verification with Z3 SMT
 
-Security properties are encoded as Z3 constraints over the parsed configuration. When a configuration violates an invariant, the solver finds a satisfying assignment for the violation, a counterexample witness. The verifier's verdict, built from that witness, is fed into the next prompt.
+Security properties are encoded as Z3 constraints over the parsed configuration. When a configuration violates an invariant, the solver finds a satisfying assignment for the violation, a counterexample witness: for example, a concrete source address and port that reach a critical service, or a chain of IAM permissions that reaches administrator access. The verifier's verdict, built from that witness, is fed into the next prompt.
 
-For candidate patches, verification uses a dual-solver refinement check. Solver A checks completeness: that no counterexample exists, so the patched configuration satisfies the full set of modeled invariants. Solver B checks non-regression: it uses the original configuration to confirm the violation was real, then shows that the patched configuration cannot retain that violation class. For high-risk policies, passing both produces a formal proof certificate.
+A candidate patch is accepted only if the full verifier passes it. For violations the CPM can model directly, encryption and network exposure, an accepted patch also gets a dual-solver refinement proof. Solver A checks completeness: that no counterexample exists, so the patched configuration satisfies the modeled invariants. Solver B checks non-regression: it uses the original configuration to confirm the violation was real, then shows that the patched configuration cannot retain that violation class. Passing both produces a formal proof certificate. Audit and policy properties, such as a missing WAF association or lifecycle policy, sit outside the CPM state space, so they are decided by the verifier alone.
 
 ## Terraform Remediation
 
@@ -78,7 +79,7 @@ Of the 88 fixed cases, 75 were fixed on the first attempt. Formal proof certific
 - **Scope is the model.** Verification is only as complete as the Cloud Perimeter Model. A pass means the patch satisfies the modeled invariants, not that the configuration is secure in every respect.
 - **Generalization is still open.** The external set reached 6 of 12 cases (50%), with a wide confidence interval, so results on real-world configurations need a larger evaluation.
 - **17 benchmark cases were not fixed** within 5 attempts, concentrated in the compute, analytics, and storage pillars.
-- **Certificates cover a subset.** Formal proof certificates were issued for 29 of 105 cases, not for every accepted patch.
+- **Certificates cover a subset.** Formal proof certificates were issued for 29 of 105 cases. The dual-solver proof only applies to encryption and network violations; other accepted patches rest on the verifier's checks alone.
 - **Status.** The work is a Research Square preprint and the manuscript is under review; the results have not yet completed peer review.
 
 ## Future Work

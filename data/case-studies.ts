@@ -39,7 +39,7 @@ export const caseStudies: CaseStudy[] = [
     title: "28K+ Production AI Enrichment & Content Pipeline",
     href: "/case-studies/28k-record-pipeline/",
     description:
-      "A production LLM enrichment pipeline for 28,000+ records: status-gated LLM stages, structured outputs, 9-language translation via OpenRouter and Gemini, fault-tolerant parallel extraction, and a 5.6x speedup.",
+      "A production LLM enrichment pipeline for 28,000+ records: status-gated LLM stages, structured outputs, 9-language translation, and a 5.6x processing speedup.",
     summary:
       "A production AI pipeline that scrapes, enriches, translates, and publishes 28,000+ AI tool listings, with status-gated LLM stages that never skip a failure.",
     client: "TechPotion.ai",
@@ -80,7 +80,7 @@ export const caseStudies: CaseStudy[] = [
     title: "Multi-Tenant B2B SaaS QA",
     href: "/case-studies/multitenant-saas-qa/",
     description:
-      "Lead QA on PharmaConnect, a multi-tenant B2B pharmaceutical distribution platform: 20 end-to-end journeys, 80+ defects across 15 modules, and 11 critical P1 findings identified during enterprise QA and security testing.",
+      "Lead QA on PharmaConnect, a multi-tenant B2B pharma platform: 20 end-to-end journeys, 80+ defects across 15 modules, and 11 critical P1 findings.",
     summary:
       "Lead QA on a multi-tenant B2B pharmaceutical distribution platform: order-to-cash journeys, business-logic validation, API evidence, authorization, audit-log security, and reconciliation.",
     client: "PharmaConnect",
@@ -125,7 +125,7 @@ export const caseStudies: CaseStudy[] = [
     title: "Autonomous Cloud Compliance & AI Auditing Engine",
     href: "/case-studies/cloud-compliance/",
     description:
-      "An evidence-based AI auditing engine: a 6-node LangGraph Corrective RAG state machine over live AWS evidence and policy documents, answering 250+ question security reviews (CAIQ, SOC 2, SIG) with required citations.",
+      "An AI auditing engine: a LangGraph Corrective RAG agent answers 250+ question security reviews (CAIQ, SOC 2, SIG) from live AWS evidence, with citations.",
     summary:
       "Collecting live AWS evidence, then answering enterprise security questionnaires with a LangGraph Corrective RAG agent that must cite a verified source for every answer.",
     client: "Independent build",
@@ -153,7 +153,7 @@ export const caseStudies: CaseStudy[] = [
     title: "Sentinel-Mesh: Formally Verified Remediation of Cloud Misconfigurations",
     href: "/case-studies/sentinel-mesh/",
     description:
-      "Research case study: Sentinel-Mesh combines LLM remediation generation with Z3 SMT formal verification in a closed feedback loop to repair Terraform misconfigurations, evaluated on CloudFix-Bench (105 cases).",
+      "Research case study: Sentinel-Mesh pairs LLM remediation with Z3 SMT verification in a closed loop to repair Terraform misconfigurations, on CloudFix-Bench.",
     summary:
       "A neuro-symbolic research framework: an LLM proposes Terraform fixes, and a Z3 SMT verifier accepts only patches that provably satisfy cloud security invariants.",
     client: "Independent research · Research Square preprint, manuscript under review",

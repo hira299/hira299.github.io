@@ -31,7 +31,7 @@ export const services: Service[] = [
     hasPage: true,
     seoTitle: "AI Automation Engineer",
     description:
-      "Production AI automation and LLM pipelines: workflow orchestration, multi-stage LLM processing, state-aware pipelines, retries, and fault tolerance, built with Python, n8n, Make.com, PostgreSQL, and AWS.",
+      "Production AI automation and LLM pipelines: multi-stage LLM processing, state-aware workflows, retries, and fault tolerance with Python, n8n, and AWS.",
     summary:
       "Workflows that connect your tools, APIs, databases, and LLMs, and keep working when inputs are messy or services fail.",
     problems: [
