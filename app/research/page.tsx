@@ -43,7 +43,7 @@ const artifacts = [
     links: [
       {
         label: "Medium",
-        href: "https://medium.com/@hira229922/beyond-heuristics-formally-verifying-ai-generated-infrastructure-with-z3-smt-solvers-e95fd3a7bf95",
+        href: "https://medium.com/@hira299/beyond-heuristics-formally-verifying-ai-generated-infrastructure-with-z3-smt-solvers-e95fd3a7bf95",
       },
     ],
   },
