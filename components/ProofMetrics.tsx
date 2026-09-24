@@ -8,7 +8,7 @@ export function ProofMetrics() {
       <p className="section-support">
         Figures from production automation and QA work. Each one is explained in the case studies.
       </p>
-      <ul className="metrics-grid">
+      <ul className="metrics-grid metrics-grid--single-row">
         {profile.metrics.map((metric) => (
           <li key={metric.label}>
             <strong>

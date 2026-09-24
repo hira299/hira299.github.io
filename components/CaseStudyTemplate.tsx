@@ -35,7 +35,7 @@ export async function CaseStudyTemplate({ slug }: { slug: CaseStudySlug }) {
             <dd>{study.stack.join(", ")}</dd>
           </div>
         </dl>
-        <ul className="metrics-grid">
+        <ul className={slug === "28k-record-pipeline" ? "metrics-grid metrics-grid--pair-fill" : "metrics-grid"}>
           {study.metrics.map((metric) => (
             <li key={metric.label}>
               <strong>{metric.value}</strong>
