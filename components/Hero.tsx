@@ -19,9 +19,9 @@ export function Hero() {
           <Link href="/contact/" className="button primary">
             Hire Me
           </Link>
-          <a href="#experience" className="button secondary">
-            Professional Experience
-          </a>
+          <Link href="/about/" className="button secondary">
+            About Me
+          </Link>
           <a href="/Hira_Ahmed_Resume.pdf" className="button secondary" download="Hira_Ahmed_Resume.pdf">
             Download Resume
           </a>
