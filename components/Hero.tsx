@@ -19,12 +19,15 @@ export function Hero() {
           <Link href="/contact/" className="button primary">
             Hire Me
           </Link>
-          <Link href="/case-studies/" className="button secondary">
-            View Case Studies
-          </Link>
+          <a href="#experience" className="button secondary">
+            Professional Experience
+          </a>
+          <a href="/Hira_Ahmed_Resume.pdf" className="button secondary" download="Hira_Ahmed_Resume.pdf">
+            Download Resume
+          </a>
           {github ? (
             <a href={github.href} className="button ghost" target="_blank" rel="noopener noreferrer">
-              View GitHub<span className="visually-hidden"> (opens in a new tab)</span>
+              GitHub<span className="visually-hidden"> (opens in a new tab)</span>
             </a>
           ) : null}
         </div>

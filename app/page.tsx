@@ -42,7 +42,7 @@ export default function HomePage() {
       <JsonLd data={homeJsonLd()} />
       <Hero />
       <ProofMetrics />
-      <Services />
+      <ExperienceTimeline />
 
       <section className="section" aria-labelledby="featured-title">
         <h2 id="featured-title">Featured case studies</h2>
@@ -56,6 +56,21 @@ export default function HomePage() {
         </div>
       </section>
 
+      <Services />
+
+      <section className="section" aria-labelledby="projects-title">
+        <h2 id="projects-title">Selected projects</h2>
+        <p className="section-support">
+          Automation systems with public demos or code. See <Link href="/projects/">all projects</Link>.
+        </p>
+        <div className="card-grid">
+          {featuredProjects.map((project) => (
+            <ProjectCard key={project.slug} project={project} />
+          ))}
+        </div>
+      </section>
+
+      <Research />
       <TechStack />
 
       <section className="section" aria-labelledby="how-title">
@@ -73,20 +88,6 @@ export default function HomePage() {
         </ol>
       </section>
 
-      <section className="section" aria-labelledby="projects-title">
-        <h2 id="projects-title">Selected projects</h2>
-        <p className="section-support">
-          Automation systems with public demos or code. See <Link href="/projects/">all projects</Link>.
-        </p>
-        <div className="card-grid">
-          {featuredProjects.map((project) => (
-            <ProjectCard key={project.slug} project={project} />
-          ))}
-        </div>
-      </section>
-
-      <Research />
-      <ExperienceTimeline />
       <HireMe />
     </>
   );

@@ -26,7 +26,7 @@ export const profile = {
   availability: "Working hours overlap with US Eastern and Pacific business hours.",
   languages: ["English", "Urdu", "Hindi"],
   education: {
-    degree: "Bachelor of Computer Science (BCompSc)",
+    degree: "B.S. Cybersecurity",
     institution: "Sir Syed University of Engineering and Technology",
   },
   career: {
