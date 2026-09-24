@@ -80,6 +80,7 @@ export const profile = {
       group: "LLM Systems & Agents",
       items: [
         "LangGraph",
+        "LangChain",
         "LlamaIndex",
         "Langflow",
         "RAG",
@@ -125,6 +126,7 @@ export const profile = {
     "Retrieval-augmented generation",
     "Corrective RAG",
     "LangGraph",
+    "LangChain",
     "AI automation",
     "n8n workflow automation",
     "API integration",

@@ -2,7 +2,7 @@ import { experience } from "@/data/experience";
 
 export function ExperienceTimeline() {
   return (
-    <section className="section" aria-labelledby="experience-title">
+    <section id="experience" className="section" aria-labelledby="experience-title">
       <h2 id="experience-title">Professional experience</h2>
       <ol className="timeline">
         {experience.map((item) => (
@@ -23,7 +23,11 @@ export function ExperienceTimeline() {
             {item.engagements ? (
               <div className="engagements">
                 {item.engagements.map((engagement) => (
-                  <div key={engagement.name} className="card">
+                  <div
+                    key={engagement.name}
+                    id={engagement.name.toLowerCase().replace(/[^a-z0-9]+/g, "-")}
+                    className="card"
+                  >
                     <h4>{engagement.name}</h4>
                     <p>{engagement.description}</p>
                     <ul className="bullet-list">

@@ -1,5 +1,5 @@
 ---
-title: Multi-Tenant SaaS QA
+title: Multi-Tenant B2B SaaS QA
 ---
 
 ## Problem
@@ -56,6 +56,10 @@ Recording the layer mattered. A frontend-only defect can be fixed in the UI, but
 
 Fixes were retested against the original steps and the flows around them. Retesting caught cases where a UI fix exposed a second, backend-level failure underneath, and a fix that introduced a regression in a shared input component.
 
+## Enterprise QA & Business-Logic Validation
+
+Much of the enterprise QA work was business-logic validation: checking that the platform enforced its own commercial rules, not only that screens worked. That meant verifying partial settlements against the ledger, overdue status against the finance dashboard, invoice totals across cancelled and re-created delivery batches, credit notes against returned quantities, and promotional pricing against its validity window. Each rule was checked in stored data after the action, because a correct-looking screen can sit on top of an incorrect record.
+
 ## Challenges
 
 - **Permission combinations.** Six roles, many tenants, and 15 modules produce a large number of role-action-tenant combinations to cover.
@@ -75,7 +79,7 @@ Fixes were retested against the original steps and the flows around them. Retest
 
 - 20 end-to-end journeys executed across all 6 roles; 3 of the security and boundary journeys failed and produced findings
 - 80+ defects documented with reproduction steps and API-level evidence
-- 11 P1 defects identified, in these areas:
+- 11 critical P1 findings identified during enterprise QA and security testing, in these areas:
   - **Authorization:** a distributor manager could perform the driver's full delivery workflow, including starting routes and submitting proof of delivery
   - **Authentication:** deactivated users could still log in, unverified accounts could authenticate without completing OTP verification or admin approval, and the password reset flow could lock users out of their accounts
   - **Sensitive data exposure:** audit logs exposed credential material (password hashes, active session tokens, and live one-time verification codes) to users with audit access

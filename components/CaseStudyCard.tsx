@@ -1,11 +1,12 @@
 import Link from "next/link";
-import type { CaseStudy } from "@/data/case-studies";
+import { caseStudyKindLabels, type CaseStudy } from "@/data/case-studies";
 
 export function CaseStudyCard({ study }: { study: CaseStudy }) {
   const lead = study.metrics[0];
 
   return (
     <article className="card">
+      <p className="card-kind">{caseStudyKindLabels[study.kind]}</p>
       {lead ? (
         <p className="eyebrow">
           {lead.value} · {lead.label}

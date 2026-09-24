@@ -124,7 +124,7 @@ main {
   padding: 0;
 }
 
-.nav-links a {
+.nav-links > li > a {
   position: relative;
   color: var(--muted);
   text-decoration: none;
@@ -132,7 +132,7 @@ main {
   padding: 0.25rem 0;
 }
 
-.nav-links a:not(.nav-cta)::after {
+.nav-links > li > a:not(.nav-cta)::after {
   content: "";
   position: absolute;
   left: 0;
@@ -146,13 +146,13 @@ main {
   transition: transform 240ms var(--ease);
 }
 
-.nav-links a:hover,
-.nav-links a[aria-current="page"] {
+.nav-links > li > a:hover,
+.nav-links > li > a[aria-current="page"] {
   color: var(--fg);
 }
 
-.nav-links a:hover::after,
-.nav-links a[aria-current="page"]::after {
+.nav-links > li > a:hover::after,
+.nav-links > li > a[aria-current="page"]::after {
   transform: scaleX(1);
 }
 
@@ -223,6 +223,170 @@ main {
 
 .nav-toggle[aria-expanded="true"] .nav-toggle-bars::after {
   transform: translateY(-6px) rotate(-45deg);
+}
+
+.nav-item {
+  position: static;
+}
+
+.nav-item.compact {
+  position: relative;
+}
+
+.nav-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.25rem 0;
+  border: 0;
+  background: none;
+  color: var(--muted);
+  font: inherit;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 160ms ease;
+}
+
+.nav-trigger:hover,
+.nav-trigger[aria-expanded="true"],
+.nav-trigger[data-current] {
+  color: var(--fg);
+}
+
+.nav-trigger[data-current] {
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.45em;
+}
+
+.nav-chevron {
+  width: 0.42rem;
+  height: 0.42rem;
+  margin-top: -0.2rem;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(45deg);
+  transition: transform 200ms var(--ease);
+}
+
+.nav-trigger[aria-expanded="true"] .nav-chevron {
+  margin-top: 0.15rem;
+  transform: rotate(-135deg);
+}
+
+.mega {
+  position: absolute;
+  top: calc(100% - 0.35rem);
+  left: 0;
+  right: 0;
+  z-index: 40;
+  padding: 1.25rem 1.35rem 1.1rem;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  background: var(--bg-elevated);
+  box-shadow: 0 24px 60px -24px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(124, 58, 237, 0.08);
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: opacity 180ms ease, transform 180ms var(--ease), visibility 0s linear 180ms;
+}
+
+.nav-item.compact .mega {
+  top: calc(100% + 0.6rem);
+  left: auto;
+  right: -1rem;
+  width: 21rem;
+}
+
+.mega[data-open="true"] {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 180ms ease, transform 180ms var(--ease);
+}
+
+.mega-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--mega-cols, 1), minmax(0, 1fr));
+  gap: 1.25rem 1.75rem;
+}
+
+.mega[data-cols="3"] .mega-grid {
+  --mega-cols: 3;
+}
+
+.mega[data-cols="4"] .mega-grid {
+  --mega-cols: 4;
+}
+
+.mega-group ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.mega-title {
+  margin: 0 0 0.5rem;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.mega-title a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.mega-title a:hover {
+  text-decoration: underline;
+}
+
+.mega-link {
+  display: block;
+  margin: 0 -0.55rem;
+  padding: 0.38rem 0.55rem;
+  border-radius: var(--radius-sm);
+  color: var(--fg);
+  font-size: 0.93rem;
+  line-height: 1.35;
+  text-decoration: none;
+  transition: background 150ms ease;
+}
+
+.mega-link:hover,
+.mega-link:focus-visible,
+.mega-link[aria-current="page"] {
+  color: var(--fg);
+  background: rgba(124, 58, 237, 0.18);
+}
+
+.mega-desc {
+  display: block;
+  margin-top: 0.1rem;
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+.mega-topics {
+  margin: 0.45rem 0 0;
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+.mega-footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  margin: 1rem 0 0;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--line);
+  font-size: 0.88rem;
+}
+
+.mega-footer a {
+  text-decoration: none;
 }
 
 /* Typography */
@@ -1111,6 +1275,28 @@ main:focus {
   }
 }
 
+.project-group + .project-group {
+  margin-top: 2.75rem;
+}
+
+.project-group > .card-grid + .support {
+  margin-top: 1rem;
+}
+
+.project-group-title {
+  margin: 0 0 0.35rem;
+  font-size: clamp(1.3rem, 2.4vw, 1.6rem);
+}
+
+.card-kind {
+  margin: 0 0 0.35rem;
+  color: var(--muted);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
 /* Responsive */
 
 @media (max-width: 900px) {
@@ -1132,10 +1318,11 @@ main:focus {
     left: -1.25rem;
     right: -1.25rem;
     flex-direction: column;
+    flex-wrap: nowrap;
     align-items: stretch;
     gap: 0;
     padding: 0.5rem 1.25rem 1rem;
-    background: rgba(13, 10, 23, 0.97);
+    background: var(--bg);
     border-bottom: 1px solid var(--line);
     visibility: hidden;
     opacity: 0;
@@ -1150,19 +1337,64 @@ main:focus {
     transition: opacity 200ms ease, transform 200ms var(--ease);
   }
 
-  .nav-links a {
-    display: block;
-    padding: 0.7rem 0;
+
+  .nav-links[data-open="true"] {
+    max-height: calc(100vh - 4.5rem);
+    overflow-y: auto;
   }
 
-  .nav-links a:not(.nav-cta)::after {
-    bottom: 0.35rem;
-    right: auto;
-    width: 2rem;
+  .nav-item,
+  .nav-item.compact {
+    position: static;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .nav-trigger {
+    width: 100%;
+    justify-content: space-between;
+    padding: 0.8rem 0;
+  }
+
+  .nav-trigger[data-current] {
+    text-decoration: none;
+    color: var(--accent);
+  }
+
+  .mega,
+  .nav-item.compact .mega {
+    position: static;
+    width: auto;
+    display: none;
+    padding: 0 0 0.9rem;
+    border: 0;
+    border-radius: 0;
+    background: none;
+    box-shadow: none;
+    visibility: inherit;
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .mega[data-open="true"],
+  .nav-item.compact .mega[data-open="true"] {
+    display: block;
+  }
+
+  .mega-grid,
+  .mega[data-cols] .mega-grid {
+    grid-template-columns: 1fr;
+    gap: 0.9rem;
+  }
+
+  .mega-link {
+    margin: 0;
+    padding: 0.45rem 0.6rem;
   }
 
   .nav-cta {
-    margin-top: 0.5rem;
+    display: block;
+    margin-top: 0.9rem;
     text-align: center;
   }
 }

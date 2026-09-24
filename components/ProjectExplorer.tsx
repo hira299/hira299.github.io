@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { ProjectCard } from "./ProjectCard";
-import { projectCategories, projects, type ProjectCategory } from "@/data/projects";
+import { projectCategories, projectGroups, projects, type ProjectCategory } from "@/data/projects";
 
 export function ProjectExplorer() {
   const [query, setQuery] = useState("");
@@ -53,11 +53,21 @@ export function ProjectExplorer() {
         {results.length} of {projects.length} projects
       </p>
       {results.length > 0 ? (
-        <div className="card-grid">
-          {results.map((project) => (
-            <ProjectCard key={project.slug} project={project} />
-          ))}
-        </div>
+        projectGroups.map((group) => {
+          const items = results.filter((project) => project.group === group.id);
+          if (items.length === 0) return null;
+          return (
+            <div key={group.id} id={group.anchor} className="project-group">
+              <h3 className="project-group-title">{group.title}</h3>
+              <p className="section-support">{group.description}</p>
+              <div className="card-grid">
+                {items.map((project) => (
+                  <ProjectCard key={project.slug} project={project} anchor />
+                ))}
+              </div>
+            </div>
+          );
+        })
       ) : (
         <p className="support">No projects match. Try another term or category.</p>
       )}

@@ -5,10 +5,20 @@ export type CaseStudySlug =
   | "28k-record-pipeline"
   | "multitenant-saas-qa"
   | "aws-cost-optimization"
-  | "cloud-compliance";
+  | "cloud-compliance"
+  | "sentinel-mesh";
+
+export type CaseStudyKind = "professional" | "build" | "research";
+
+export const caseStudyKindLabels: Record<CaseStudyKind, string> = {
+  professional: "Professional Case Study",
+  build: "AI Engineering Build",
+  research: "Research Case Study",
+};
 
 export type CaseStudy = {
   slug: CaseStudySlug;
+  kind: CaseStudyKind;
   title: string;
   href: string;
   description: string;
@@ -24,30 +34,9 @@ export type CaseStudy = {
 
 export const caseStudies: CaseStudy[] = [
   {
-    slug: "n8n-email-agent",
-    title: "Autonomous AI Email Agent",
-    href: "/case-studies/n8n-email-agent/",
-    description:
-      "A stateful n8n email agent using Gmail API, Groq, and persistent thread memory to screen inquiries, answer from verified information, and draft replies.",
-    summary:
-      "A stateful n8n agent that reads incoming email, remembers the whole thread, answers from verified information, and drafts replies.",
-    client: "Personal production project",
-    role: "Designed and built the workflow end-to-end",
-    stack: ["n8n", "Gmail API", "Groq", "RAG", "Google Sheets", "Cloudflare Tunnel"],
-    metrics: [
-      { value: "Multi-turn", label: "Thread memory across replies" },
-      { value: "Self-hosted", label: "n8n behind Cloudflare Tunnel" },
-    ],
-    services: ["n8n-automation", "ai-agents", "api-integrations"],
-    projects: ["ai-email-agent"],
-    links: [
-      { label: "Demo (Loom)", href: "https://www.loom.com/share/9fbd2526672348f2b8c4284933817e39" },
-      { label: "Repository", href: "https://github.com/hira299/AI-Autonomous-Email-Agent" },
-    ],
-  },
-  {
     slug: "28k-record-pipeline",
-    title: "Production AI Enrichment Pipeline (28K+ Records)",
+    kind: "professional",
+    title: "28K+ Production AI Enrichment & Content Pipeline",
     href: "/case-studies/28k-record-pipeline/",
     description:
       "A production LLM enrichment pipeline for 28,000+ records: status-gated LLM stages, structured outputs, 9-language translation via OpenRouter and Gemini, fault-tolerant parallel extraction, and a 5.6x speedup.",
@@ -61,36 +50,17 @@ export const caseStudies: CaseStudy[] = [
       { value: "4", label: "Sequential LLM stages" },
       { value: "9", label: "Languages translated" },
       { value: "5.6x", label: "Processing speedup" },
+      { value: "34%", label: "Monthly AWS cost reduction on the platform" },
       { value: "95%", label: "Reported extraction success rate" },
     ],
     services: ["ai-automation", "api-integrations"],
-    projects: [],
-    links: [],
-  },
-  {
-    slug: "multitenant-saas-qa",
-    title: "Multi-Tenant SaaS QA",
-    href: "/case-studies/multitenant-saas-qa/",
-    description:
-      "Lead QA on PharmaConnect, a multi-tenant B2B pharmaceutical distribution platform: 20 end-to-end journeys, 80+ defects across 15 modules, and 11 P1 findings.",
-    summary:
-      "Lead QA on a multi-tenant B2B pharmaceutical distribution platform: order-to-cash journeys, API evidence, authorization, audit-log security, and reconciliation.",
-    client: "PharmaConnect",
-    role: "Lead QA",
-    stack: ["Exploratory testing", "API testing", "Browser network inspection", "curl", "RBAC matrix"],
-    metrics: [
-      { value: "20", label: "End-to-end journeys" },
-      { value: "6", label: "User roles tested" },
-      { value: "80+", label: "Defects documented" },
-      { value: "11", label: "P1 defects" },
-    ],
-    services: ["qa-testing", "multitenant-qa", "api-testing", "business-logic-testing"],
-    projects: [],
+    projects: ["sentinel-mesh"],
     links: [],
   },
   {
     slug: "aws-cost-optimization",
-    title: "AWS Cost Optimization",
+    kind: "professional",
+    title: "AWS Infrastructure & Cost Optimization",
     href: "/case-studies/aws-cost-optimization/",
     description:
       "Cutting monthly AWS infrastructure cost by 34% for a 28K+ record platform through API Gateway, execution-flow, and PostgreSQL query optimization.",
@@ -105,16 +75,62 @@ export const caseStudies: CaseStudy[] = [
     links: [],
   },
   {
+    slug: "multitenant-saas-qa",
+    kind: "professional",
+    title: "Multi-Tenant B2B SaaS QA",
+    href: "/case-studies/multitenant-saas-qa/",
+    description:
+      "Lead QA on PharmaConnect, a multi-tenant B2B pharmaceutical distribution platform: 20 end-to-end journeys, 80+ defects across 15 modules, and 11 critical P1 findings identified during enterprise QA and security testing.",
+    summary:
+      "Lead QA on a multi-tenant B2B pharmaceutical distribution platform: order-to-cash journeys, business-logic validation, API evidence, authorization, audit-log security, and reconciliation.",
+    client: "PharmaConnect",
+    role: "Lead QA",
+    stack: ["Exploratory testing", "API testing", "Browser network inspection", "curl", "RBAC matrix"],
+    metrics: [
+      { value: "20", label: "End-to-end journeys" },
+      { value: "6", label: "User roles tested" },
+      { value: "80+", label: "Defects documented" },
+      { value: "11", label: "Critical P1 findings" },
+    ],
+    services: ["qa-testing", "multitenant-qa", "api-testing", "business-logic-testing"],
+    projects: [],
+    links: [],
+  },
+  {
+    slug: "n8n-email-agent",
+    kind: "build",
+    title: "Autonomous AI Email Agent",
+    href: "/case-studies/n8n-email-agent/",
+    description:
+      "A stateful n8n email agent using Gmail API, Groq, and persistent thread memory to screen inquiries, answer from verified information, and draft replies.",
+    summary:
+      "A stateful n8n agent that reads incoming email, remembers the whole thread, answers from verified information, and drafts replies.",
+    client: "Independent build",
+    role: "Designed and built the workflow end-to-end",
+    stack: ["n8n", "Gmail API", "Groq", "RAG", "Google Sheets", "Cloudflare Tunnel"],
+    metrics: [
+      { value: "Multi-turn", label: "Thread memory across replies" },
+      { value: "Self-hosted", label: "n8n behind Cloudflare Tunnel" },
+    ],
+    services: ["n8n-automation", "ai-agents", "api-integrations"],
+    projects: ["ai-email-agent"],
+    links: [
+      { label: "Demo (Loom)", href: "https://www.loom.com/share/9fbd2526672348f2b8c4284933817e39" },
+      { label: "Repository", href: "https://github.com/hira299/AI-Autonomous-Email-Agent" },
+    ],
+  },
+  {
     slug: "cloud-compliance",
-    title: "Cloud Compliance & Evidence-Based AI Auditing Engine",
+    kind: "build",
+    title: "Autonomous Cloud Compliance & AI Auditing Engine",
     href: "/case-studies/cloud-compliance/",
     description:
       "An evidence-based AI auditing engine: a 6-node LangGraph Corrective RAG state machine over live AWS evidence and policy documents, answering 250+ question security reviews (CAIQ, SOC 2, SIG) with required citations.",
     summary:
       "Collecting live AWS evidence, then answering enterprise security questionnaires with a LangGraph Corrective RAG agent that must cite a verified source for every answer.",
-    client: "Personal production project",
+    client: "Independent build",
     role: "Designed and built both versions end-to-end",
-    stack: ["LangGraph", "CRAG", "LlamaIndex", "Groq (Llama 3.1 8B)", "Supabase pgvector", "FastEmbed", "PyMuPDF", "FastAPI", "n8n", "PostgreSQL", "Docker", "AWS CLI"],
+    stack: ["LangGraph", "LangChain", "CRAG", "LlamaIndex", "Groq (Llama 3.1 8B)", "Supabase pgvector", "FastEmbed", "PyMuPDF", "FastAPI", "n8n", "PostgreSQL", "Docker", "AWS CLI"],
     metrics: [
       { value: "~90%", label: "Reported cut in questionnaire turnaround" },
       { value: "250+", label: "Questions per enterprise review" },
@@ -128,6 +144,37 @@ export const caseStudies: CaseStudy[] = [
       {
         label: "Repository",
         href: "https://github.com/hira299/Cloud-Security-Audit-Compliance-Automation-Platform",
+      },
+    ],
+  },
+  {
+    slug: "sentinel-mesh",
+    kind: "research",
+    title: "Sentinel-Mesh: Formally Verified Remediation of Cloud Misconfigurations",
+    href: "/case-studies/sentinel-mesh/",
+    description:
+      "Research case study: Sentinel-Mesh combines LLM remediation generation with Z3 SMT formal verification in a closed feedback loop to repair Terraform misconfigurations, evaluated on CloudFix-Bench (105 cases).",
+    summary:
+      "A neuro-symbolic research framework: an LLM proposes Terraform fixes, and a Z3 SMT verifier accepts only patches that provably satisfy cloud security invariants.",
+    client: "Independent research · Research Square preprint, manuscript under review",
+    role: "Lead author and developer",
+    stack: ["Python", "Z3 SMT", "Terraform (HCL)", "python-hcl2", "Groq", "Gemini", "Cerebras", "Checkov (baseline)"],
+    metrics: [
+      { value: "83.81%", label: "Reported remediation rate (88/105)" },
+      { value: "105", label: "CloudFix-Bench cases" },
+      { value: "0.0%", label: "Reported security regression rate, within scope" },
+      { value: "29", label: "Formal proof certificates issued" },
+    ],
+    services: ["ai-agents"],
+    projects: ["sentinel-mesh"],
+    links: [
+      { label: "Research Square preprint", href: "https://www.researchsquare.com/article/rs-10674271/latest" },
+      { label: "Preprint DOI", href: "https://doi.org/10.21203/rs.3.rs-10674271/v1" },
+      { label: "CloudFix-Bench on Zenodo", href: "https://doi.org/10.5281/zenodo.20975067" },
+      { label: "Repository", href: "https://github.com/hira299/sentinel-mesh" },
+      {
+        label: "Technical article (Medium)",
+        href: "https://medium.com/@hira229922/beyond-heuristics-formally-verifying-ai-generated-infrastructure-with-z3-smt-solvers-e95fd3a7bf95",
       },
     ],
   },

@@ -183,12 +183,27 @@ export function caseStudyJsonLd(study: CaseStudy, related: Service[]) {
       isPartOf: { "@id": ids.website },
       inLanguage: "en",
       keywords: study.stack.join(", "),
-      about: related.filter((service) => service.hasPage).map((service) => ({ "@id": serviceId(service) })),
+      about:
+        study.kind === "research"
+          ? [{ "@id": `${base}/#sentinel-mesh` }, { "@id": `${base}/#cloudfix-bench` }]
+          : related.filter((service) => service.hasPage).map((service) => ({ "@id": serviceId(service) })),
     },
+    ...(study.kind === "research" ? researchNodes() : []),
     breadcrumbNode(study.href, [
       { name: "Case Studies", path: "/case-studies/" },
       { name: study.title, path: study.href },
     ]),
+  );
+}
+
+export function researchJsonLd(description: string) {
+  return graph(
+    webPageNode("CollectionPage", "/research/", "Research", description, {
+      about: [{ "@id": `${base}/#sentinel-mesh` }, { "@id": `${base}/#cloudfix-bench` }],
+      breadcrumb: { "@id": `${base}/research/#breadcrumb` },
+    }),
+    ...researchNodes(),
+    breadcrumbNode("/research/", [{ name: "Research", path: "/research/" }]),
   );
 }
 

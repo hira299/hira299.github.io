@@ -185,7 +185,7 @@ export const services: Service[] = [
     technologies: ["RBAC matrices", "API testing", "Session/token checks", "Data-integrity checks"],
     proof: [
       "20 journeys across 6 user roles on PharmaConnect, a multi-tenant B2B platform",
-      "11 P1 defects on PharmaConnect, including authorization bypasses, authentication gaps, and payment reconciliation issues",
+      "11 critical P1 findings on PharmaConnect, including authorization bypasses, authentication gaps, and payment reconciliation issues",
     ],
     caseStudies: ["multitenant-saas-qa"],
   },

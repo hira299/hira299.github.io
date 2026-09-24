@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { HireMe } from "./HireMe";
-import { getCaseStudy, type CaseStudySlug } from "@/data/case-studies";
+import { caseStudyKindLabels, getCaseStudy, type CaseStudySlug } from "@/data/case-studies";
 import { projects } from "@/data/projects";
 import { services } from "@/data/services";
 import { JsonLd } from "./JsonLd";
@@ -17,13 +17,13 @@ export async function CaseStudyTemplate({ slug }: { slug: CaseStudySlug }) {
     <>
       <section className="page-header">
         <p className="eyebrow">
-          <Link href="/case-studies/">Case study</Link>
+          <Link href="/case-studies/">{caseStudyKindLabels[study.kind]}</Link>
         </p>
         <h1>{study.title}</h1>
         <p className="lede">{study.summary}</p>
         <dl className="facts">
           <div>
-            <dt>Client</dt>
+            <dt>{study.kind === "professional" ? "Client" : "Type"}</dt>
             <dd>{study.client}</dd>
           </div>
           <div>

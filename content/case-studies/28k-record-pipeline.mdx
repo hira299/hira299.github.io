@@ -1,5 +1,5 @@
 ---
-title: Production AI Enrichment Pipeline (28K+ Records)
+title: 28K+ Production AI Enrichment & Content Pipeline
 ---
 
 ## Problem
@@ -67,8 +67,10 @@ Treat the pipeline as a state machine: explicit per-record status, one job per s
 - 4 sequential LLM stages, including translation into 9 languages
 - 5.6x processing speedup across 28K+ URLs, as reported
 - 95% reported extraction success rate across 28K+ URLs
-- The same platform's AWS costs were later reduced by 34% (see the AWS cost case study)
+- The same platform's monthly AWS costs were later reduced by 34% (see [AWS Infrastructure & Cost Optimization](/case-studies/aws-cost-optimization/))
 
 ## Lessons Learned
 
 In production, the hard part of an LLM pipeline isn't the prompt. It's making sure a failed call is noticed, recorded, and retried. Status-gated stages gave the pipeline that property, and they also made it cheap to rerun any single stage after changing a prompt or model.
+
+This pipeline is also where my research started. In the translation and enrichment stage, roughly 2 in 10 outputs needed a retry or came back as malformed JSON. That was a rough, fluctuating observation from this pipeline, not a measured rate. Status gating caught those failures, but it raised a harder question: where a wrong output is a security risk rather than a broken listing, can model output be checked formally instead of only validated against a schema? That question became [Sentinel-Mesh](/case-studies/sentinel-mesh/), a research framework that accepts an LLM-generated cloud-security fix only when a Z3 solver verifies it.

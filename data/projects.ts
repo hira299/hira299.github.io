@@ -6,10 +6,35 @@ export type ProjectCategory =
   | "Cybersecurity"
   | "Cloud"
   | "Backend"
+  | "Frontend"
   | "Research";
+
+export type ProjectGroup = "ai-build" | "research" | "earlier";
+
+export const projectGroups: { id: ProjectGroup; anchor: string; title: string; description: string }[] = [
+  {
+    id: "ai-build",
+    anchor: "ai-engineering-builds",
+    title: "Featured AI Engineering Builds",
+    description: "Independent systems built around AI automation, agents, LLM pipelines, and workflow reliability.",
+  },
+  {
+    id: "research",
+    anchor: "research-builds",
+    title: "Research",
+    description: "Research software built alongside the Sentinel-Mesh preprint and the CloudFix-Bench benchmark.",
+  },
+  {
+    id: "earlier",
+    anchor: "earlier-builds",
+    title: "Earlier / Other Independent Builds",
+    description: "Security, full-stack, systems, and applied AI projects built outside the main AI engineering track.",
+  },
+];
 
 export type Project = {
   slug: string;
+  group: ProjectGroup;
   title: string;
   summary: string;
   highlights: string[];
@@ -30,13 +55,53 @@ export const projectCategories: ProjectCategory[] = [
   "Cloud",
   "Cybersecurity",
   "Backend",
+  "Frontend",
   "Research",
 ];
 
 export const projects: Project[] = [
   {
+    slug: "ai-email-agent",
+    group: "ai-build",
+    featured: 1,
+    title: "Autonomous AI Email Agent",
+    summary:
+      "Stateful recruiter-screening and technical Q&A assistant for email, answering from verified resume and portfolio information.",
+    highlights: [
+      "Gmail API ingestion with thread-state memory",
+      "Groq inference for screening and reply drafting",
+      "Answers grounded in verified profile data",
+    ],
+    stack: ["n8n", "Gmail API", "Groq", "RAG", "Google Sheets"],
+    categories: ["n8n", "AI Agents"],
+    demoUrl: "https://www.loom.com/share/9fbd2526672348f2b8c4284933817e39",
+    repoUrl: "https://github.com/hira299/AI-Autonomous-Email-Agent",
+    caseStudy: "/case-studies/n8n-email-agent/",
+  },
+  {
+    slug: "cloud-compliance-engine",
+    group: "ai-build",
+    featured: 2,
+    title: "Autonomous Cloud Compliance & AI Auditing Engine",
+    summary:
+      "Answers enterprise security questionnaires (CAIQ, SOC 2, SIG) from live AWS evidence and policy documents, using a LangGraph Corrective RAG agent that must cite a verified source for every answer.",
+    highlights: [
+      "6-node LangGraph CRAG state machine with a Critic Agent that verifies AWS ARNs and document sections",
+      "Local PDF retrieval with FastEmbed and Supabase pgvector",
+      "n8n and PostgreSQL queue worker; 2,000+ questions processed with no timeout failures (reported)",
+      "Demo video shows the first, Langflow-based version",
+    ],
+    stack: ["LangGraph", "LangChain", "CRAG", "LlamaIndex", "Supabase pgvector", "Groq", "FastAPI", "n8n", "Docker", "AWS CLI"],
+    categories: ["n8n", "Cloud", "Cybersecurity", "AI Agents"],
+    demoUrl: "https://www.loom.com/share/ab966bb76ebd4c44bef1ec6b0c906fdc",
+    repoUrl: "https://github.com/hira299/Cloud-Security-Audit-Compliance-Automation-Platform",
+    caseStudy: "/case-studies/cloud-compliance/",
+  },
+  {
     slug: "agency-os",
-    title: "Autonomous Agency OS & SEO Intelligence Agent",
+    group: "ai-build",
+    featured: 3,
+    title: "Autonomous Competitor Intelligence & SEO Pipeline",
     summary:
       "Automation platform for competitor research, SEO brief generation, scraping-failure handling, QA routing, and SLA governance.",
     highlights: [
@@ -46,12 +111,13 @@ export const projects: Project[] = [
     ],
     stack: ["n8n", "ClickUp", "Gemini", "PostgreSQL"],
     categories: ["n8n", "AI Automation"],
-    featured: 1,
     demoUrl: "https://www.loom.com/share/bec593a6caed4e4eb808a0bafdfa79a7",
     repoUrl: "https://github.com/hira299/Autonomous-Competitor-Intelligence-SEO-Pipeline",
   },
   {
     slug: "profitability-guardrail",
+    group: "ai-build",
+    featured: 4,
     title: "Autonomous Profitability Guardrail & State Machine",
     summary:
       "State-aware project-budget monitoring with Healthy → Warning → Critical transitions, DLQ-based error handling, and PostgreSQL audit logging.",
@@ -62,12 +128,13 @@ export const projects: Project[] = [
     ],
     stack: ["n8n", "PostgreSQL", "ClickUp", "Slack", "JavaScript", "SQL"],
     categories: ["n8n", "AI Automation", "Backend"],
-    featured: 2,
     demoUrl: "https://www.loom.com/share/679eb54f26de4ab98d895c8f9c7f493b",
     repoUrl: "https://github.com/hira299/Financial-Profitability-Guardrail",
   },
   {
     slug: "cloud-cost-sentinel",
+    group: "ai-build",
+    featured: 5,
     title: "Autonomous Cloud Cost Sentinel",
     summary:
       "AI-assisted FinOps workflow that detects cloud-cost anomalies with a rolling average, diagnoses likely AWS cost drivers, and alerts engineering.",
@@ -78,48 +145,13 @@ export const projects: Project[] = [
     ],
     stack: ["n8n", "AWS Cost Explorer", "Gemini"],
     categories: ["n8n", "Cloud", "AI Automation"],
-    featured: 3,
     repoUrl: "https://github.com/hira299/Cloud-Cost-Sentinel",
     caseStudy: "/case-studies/aws-cost-optimization/",
   },
   {
-    slug: "ai-email-agent",
-    title: "Autonomous AI Interview Agent",
-    summary:
-      "Stateful recruiter-screening and technical Q&A assistant for email, answering from verified resume and portfolio information.",
-    highlights: [
-      "Gmail API ingestion with thread-state memory",
-      "Groq inference for screening and reply drafting",
-      "Answers grounded in verified profile data",
-    ],
-    stack: ["n8n", "Gmail API", "Groq", "RAG", "Google Sheets"],
-    categories: ["n8n", "AI Agents"],
-    featured: 4,
-    demoUrl: "https://www.loom.com/share/9fbd2526672348f2b8c4284933817e39",
-    repoUrl: "https://github.com/hira299/AI-Autonomous-Email-Agent",
-    caseStudy: "/case-studies/n8n-email-agent/",
-  },
-  {
-    slug: "cloud-compliance-engine",
-    title: "Autonomous Cloud Compliance & Evidence-Based AI Auditing Engine",
-    summary:
-      "Answers enterprise security questionnaires (CAIQ, SOC 2, SIG) from live AWS evidence and policy documents, using a LangGraph Corrective RAG agent that must cite a verified source for every answer.",
-    highlights: [
-      "6-node LangGraph CRAG state machine with a Critic Agent that verifies AWS ARNs and document sections",
-      "Local PDF retrieval with FastEmbed and Supabase pgvector",
-      "n8n and PostgreSQL queue worker; 2,000+ questions processed with no timeout failures (reported)",
-      "Demo video shows the first, Langflow-based version",
-    ],
-    stack: ["LangGraph", "CRAG", "LlamaIndex", "Supabase pgvector", "Groq", "FastAPI", "n8n", "Docker", "AWS CLI"],
-    categories: ["n8n", "Cloud", "Cybersecurity", "AI Agents"],
-    featured: 5,
-    demoUrl: "https://www.loom.com/share/ab966bb76ebd4c44bef1ec6b0c906fdc",
-    repoUrl: "https://github.com/hira299/Cloud-Security-Audit-Compliance-Automation-Platform",
-    caseStudy: "/case-studies/cloud-compliance/",
-  },
-  {
     slug: "langflow-research-engine",
-    title: "Langflow Agentic Research & Citation Engine",
+    group: "ai-build",
+    title: "Langflow RAG Agentic Research & Citation Engine",
     summary:
       "Planner-synthesizer RAG workflow that breaks a research question into searches, retrieves live web sources, and writes a report with citations.",
     highlights: [
@@ -133,7 +165,8 @@ export const projects: Project[] = [
   },
   {
     slug: "omnichannel-hub",
-    title: "Make.com Omnichannel AI Content & DALL-E 3 Hub",
+    group: "ai-build",
+    title: "Make.com Omnichannel AI Content Hub",
     summary:
       "Parallel multi-branch automation that prepares platform-specific posts and visuals for X, LinkedIn, Instagram, and Facebook.",
     highlights: [
@@ -147,6 +180,7 @@ export const projects: Project[] = [
   },
   {
     slug: "seo-content-lifecycle",
+    group: "ai-build",
     title: "End-to-End SEO Content Lifecycle",
     summary:
       "Five-stage modular content pipeline (research, SEO metadata, drafting, QA, publish) with media optimization and WordPress publishing.",
@@ -161,6 +195,7 @@ export const projects: Project[] = [
   },
   {
     slug: "slack-wordpress-blogger",
+    group: "ai-build",
     title: "Slack to WordPress AI Blogger",
     summary:
       "A single Slack message triggers web research, a research-grounded draft, archiving to Google Docs, Airtable logging, and WordPress publishing.",
@@ -173,7 +208,39 @@ export const projects: Project[] = [
     demoUrl: "https://www.loom.com/share/0ab30c4c687a4b2591a3b8646e6332b0",
   },
   {
+    slug: "sentinel-mesh",
+    group: "research",
+    title: "Sentinel-Mesh & CloudFix-Bench",
+    summary:
+      "Neuro-symbolic framework combining LLM patch generation with Z3 SMT verification for autonomous remediation of cloud misconfigurations.",
+    highlights: [
+      "Z3 counterexample feedback loop, up to 5 LLM repair attempts per case",
+      "83.81% reported remediation rate on CloudFix-Bench (105 AWS Terraform patterns)",
+      "Research Square preprint; benchmark archived on Zenodo",
+    ],
+    stack: ["Python", "Z3 SMT", "Terraform", "Groq", "Gemini", "Cerebras"],
+    categories: ["Research", "Cybersecurity", "Cloud"],
+    repoUrl: "https://github.com/hira299/sentinel-mesh",
+    caseStudy: "/case-studies/sentinel-mesh/",
+  },
+  {
+    slug: "aegis-voice-dispatch",
+    group: "earlier",
+    title: "Aegis / Shield Real-Time Voice Dispatch",
+    summary:
+      "Client-side emergency dispatch dashboard that listens for spoken distress phrases, starts a PIN-cancellable countdown, and routes to Pakistan emergency responders on a map.",
+    highlights: [
+      "Streaming Web Speech API recognition with interim-result keyword matching",
+      "5-second SOS countdown with PIN cancel and a Web Audio siren",
+      "Pakistan responder directory (Rescue 1122, 15, 1099, Edhi 115) with map routing",
+    ],
+    stack: ["React", "TypeScript", "Vite", "Tailwind", "Web Speech API", "Web Audio API", "Leaflet"],
+    categories: ["Frontend"],
+    repoUrl: "https://github.com/hira299/aegis-realtime-voice-dispatch",
+  },
+  {
     slug: "browser-forensics",
+    group: "earlier",
     title: "Browser Forensics & User Activity Reconstruction Console",
     summary:
       "Turns Chrome history exports (JSON/CSV) into structured activity timelines with deterministic threat scoring and AI-assisted forensic hypotheses.",
@@ -188,7 +255,8 @@ export const projects: Project[] = [
   },
   {
     slug: "vektor",
-    title: "Vektor: AI-Powered Resume Parsing & ATS Diagnostics",
+    group: "earlier",
+    title: "Vektor AI Resume / ATS Diagnostics",
     summary:
       "Multimodal resume parsing and job-compatibility scoring with keyword alignment, skill-gap analysis, rewrite help, and PDF/Markdown/JSON exports.",
     highlights: [
@@ -202,6 +270,7 @@ export const projects: Project[] = [
   },
   {
     slug: "smart-travel-planner",
+    group: "earlier",
     title: "Smart Travel Planner",
     summary:
       "AI itinerary app that plans trips from destination, budget, travel style, and dates, backed by a serverless AWS API.",
@@ -211,17 +280,8 @@ export const projects: Project[] = [
     repoUrl: "https://github.com/hira299/smart-travel-planner",
   },
   {
-    slug: "sentinel-mesh",
-    title: "Sentinel-Mesh",
-    summary:
-      "Neuro-symbolic framework combining LLM patch generation with Z3 SMT verification for autonomous remediation of cloud misconfigurations.",
-    highlights: ["Evaluated on CloudFix-Bench (105 AWS Terraform patterns)", "Research Square preprint"],
-    stack: ["Python", "Z3 SMT", "Terraform", "LLMs"],
-    categories: ["Research", "Cybersecurity", "Cloud"],
-    repoUrl: "https://github.com/hira299/sentinel-mesh",
-  },
-  {
     slug: "thread-sync-visualizer",
+    group: "earlier",
     title: "ThreadSync Visualizer",
     summary:
       "Real-time visualization of thread synchronization with semaphores and mutex locks, showing how producer-consumer race conditions are prevented.",
@@ -232,6 +292,7 @@ export const projects: Project[] = [
   },
   {
     slug: "network-traffic-analyzer",
+    group: "earlier",
     title: "Network Traffic Analyzer",
     summary:
       "Packet capture and traffic analysis tool that parses raw packets, classifies protocols, and flags anomalous traffic patterns.",
@@ -242,6 +303,7 @@ export const projects: Project[] = [
   },
   {
     slug: "ai-chatbot-collection",
+    group: "earlier",
     title: "AI Chatbot Collection",
     summary: "A set of chatbots built with the Google Gemini API and Streamlit.",
     highlights: ["Gemini API integrations", "Streamlit interfaces"],

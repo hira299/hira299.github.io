@@ -32,7 +32,8 @@ export default function AboutPage() {
           <p>
             I&apos;m also the lead author and developer of Sentinel-Mesh, a neuro-symbolic cloud-security
             framework, and the creator of CloudFix-Bench. I review manuscripts for IEEE Access. See{" "}
-            <Link href="#research-title">research</Link> below.
+            <Link href="/research/">research</Link> and the{" "}
+            <Link href="/case-studies/sentinel-mesh/">Sentinel-Mesh research case study</Link>.
           </p>
         </div>
       </section>

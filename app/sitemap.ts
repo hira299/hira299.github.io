@@ -11,6 +11,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/about/",
     "/projects/",
     "/case-studies/",
+    "/research/",
     "/faq/",
     "/contact/",
   ];

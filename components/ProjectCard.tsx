@@ -1,9 +1,9 @@
 import Link from "next/link";
 import type { Project } from "@/data/projects";
 
-export function ProjectCard({ project }: { project: Project }) {
+export function ProjectCard({ project, anchor = false }: { project: Project; anchor?: boolean }) {
   return (
-    <article className="card">
+    <article id={anchor ? project.slug : undefined} className="card">
       <p className="eyebrow">{project.categories.join(" · ")}</p>
       <h3>{project.title}</h3>
       <p>{project.summary}</p>
