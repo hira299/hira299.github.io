@@ -60,7 +60,7 @@ export default function CaseStudiesPage() {
             {group.kind === "professional" ? (
               <p className="support">
                 ToolPotion production QA and AI education platform QA are summarized under{" "}
-                <Link href="/about/#experience">professional experience</Link>.
+                <Link href="/#experience">professional experience</Link>.
               </p>
             ) : null}
           </div>

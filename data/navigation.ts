@@ -159,7 +159,7 @@ export const navMenus: NavMenu[] = [
         href: "/about/",
         links: [
           { label: "About Hira", href: "/about/" },
-          { label: "Experience", href: "/about/#experience" },
+          { label: "Experience", href: "/about/#how-i-got-here" },
           { label: "Research & Credentials", href: "/research/" },
           { label: "FAQ", href: "/faq/" },
           { label: "Contact", href: "/contact/" },

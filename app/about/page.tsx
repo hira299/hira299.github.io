@@ -99,7 +99,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section id="experience" className="section" aria-labelledby="path-title">
+      <section id="how-i-got-here" className="section" aria-labelledby="path-title">
         <h2 id="path-title">How I Got Here</h2>
         <div className="prose">
           <p>I didn&apos;t plan to become an AI engineer.</p>
@@ -118,6 +118,10 @@ export default function AboutPage() {
             That&apos;s what pulled me into AI engineering. The research came later from the same instinct: if
             a model proposes a change, I want a way to check it. Sentinel-Mesh is that question, as a
             preprint.
+          </p>
+          <p>
+            Want to see the work behind that path? See my{" "}
+            <Link href="/#experience">Professional Experience →</Link>
           </p>
         </div>
         <ol className="timeline">
@@ -160,13 +164,13 @@ export default function AboutPage() {
             <Link href="/#experience">Professional Experience →</Link>
           </li>
           <li>
-            <Link href="/research/">Research →</Link>
+            <Link href="/#services">Services I Offer →</Link>
           </li>
           <li>
             <Link href="/case-studies/">Case Studies →</Link>
           </li>
           <li>
-            <Link href="/#services">Services I Offer →</Link>
+            <Link href="/research/">Research →</Link>
           </li>
           <li>
             <Link href="/contact/">Contact →</Link>
