@@ -102,7 +102,7 @@ export const navMenus: NavMenu[] = [
       },
       {
         title: "Backend & Cloud",
-        href: "/#stack-title",
+        href: "/case-studies/aws-cost-optimization/",
         links: [
           { label: "AWS", href: "/case-studies/aws-cost-optimization/" },
           { label: "API Integrations", href: "/ai-automation/" },
