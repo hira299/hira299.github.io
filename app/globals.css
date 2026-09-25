@@ -315,6 +315,15 @@ main {
   text-transform: uppercase;
 }
 
+.mega-label a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.mega-label a:hover {
+  text-decoration: underline;
+}
+
 .mega-grid {
   display: grid;
   grid-template-columns: repeat(var(--mega-cols, 1), minmax(0, 1fr));

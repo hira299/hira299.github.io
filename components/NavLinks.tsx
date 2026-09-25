@@ -112,7 +112,17 @@ export function NavLinks() {
                 <span className="nav-chevron" aria-hidden="true" />
               </button>
               <div id={`menu-${menu.id}`} className="mega" data-open={expanded} data-cols={menu.groups.length}>
-                {menu.sectionLabel ? <p className="mega-label">{menu.sectionLabel}</p> : null}
+                {menu.sectionLabel ? (
+                  <p className="mega-label">
+                    {menu.sectionHref ? (
+                      <Link href={menu.sectionHref} onClick={closeAll}>
+                        {menu.sectionLabel}
+                      </Link>
+                    ) : (
+                      menu.sectionLabel
+                    )}
+                  </p>
+                ) : null}
                 <div className="mega-grid">
                   {menu.groups.map((group) => (
                     <div key={group.title} className="mega-group">

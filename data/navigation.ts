@@ -20,8 +20,9 @@ export type NavMenu = {
   match: string[];
   groups: NavGroup[];
   footer?: NavLink[];
-  /** Subtle non-clickable label above the mega-menu columns. */
+  /** Subtle section label above the mega-menu columns. */
   sectionLabel?: string;
+  sectionHref?: string;
 };
 
 export const navMenus: NavMenu[] = [
@@ -79,6 +80,7 @@ export const navMenus: NavMenu[] = [
     id: "expertise",
     label: "Expertise",
     sectionLabel: "Services I Offer",
+    sectionHref: "/#services",
     match: ["/ai-automation/", "/ai-agents/", "/n8n-automation/", "/qa-testing/", "/api-testing/", "/multitenant-qa/"],
     groups: [
       {
