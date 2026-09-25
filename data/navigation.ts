@@ -42,8 +42,6 @@ export const navMenus: NavMenu[] = [
             href: "/case-studies/multitenant-saas-qa/",
             description: "Enterprise QA and business-logic validation",
           },
-          { label: "ToolPotion Production QA", href: "/about/#toolpotion" },
-          { label: "AI Education Platform QA", href: "/about/#ai-academy-cloud" },
         ],
       },
       {

@@ -90,7 +90,7 @@ export default function ResearchPage() {
             </li>
           ))}
         </ul>
-        <p className="support">
+        <p className="support research-lead">
           Lead author and developer. Research Square preprint; the manuscript is under review.{" "}
           <Link href={sentinel.href}>Read the research case study</Link>, including the architecture, evaluation, and
           limitations.
