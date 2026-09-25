@@ -20,6 +20,8 @@ export type NavMenu = {
   match: string[];
   groups: NavGroup[];
   footer?: NavLink[];
+  /** Subtle non-clickable label above the mega-menu columns. */
+  sectionLabel?: string;
 };
 
 export const navMenus: NavMenu[] = [
@@ -76,6 +78,7 @@ export const navMenus: NavMenu[] = [
   {
     id: "expertise",
     label: "Expertise",
+    sectionLabel: "Services I Offer",
     match: ["/ai-automation/", "/ai-agents/", "/n8n-automation/", "/qa-testing/", "/api-testing/", "/multitenant-qa/"],
     groups: [
       {
@@ -99,7 +102,7 @@ export const navMenus: NavMenu[] = [
       },
       {
         title: "Backend & Cloud",
-        href: "/about/#stack-title",
+        href: "/#stack-title",
         links: [
           { label: "AWS", href: "/case-studies/aws-cost-optimization/" },
           { label: "API Integrations", href: "/ai-automation/" },

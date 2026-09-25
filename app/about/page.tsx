@@ -157,7 +157,7 @@ export default function AboutPage() {
         <h2 id="about-links-title">More About My Work</h2>
         <ul className="link-list">
           <li>
-            <Link href="/#experience">Experience →</Link>
+            <Link href="/#experience">Professional Experience →</Link>
           </li>
           <li>
             <Link href="/research/">Research →</Link>

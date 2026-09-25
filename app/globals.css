@@ -306,6 +306,15 @@ main {
   transition: opacity 180ms ease, transform 180ms var(--ease);
 }
 
+.mega-label {
+  margin: 0 0 0.7rem;
+  color: var(--muted);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
 .mega-grid {
   display: grid;
   grid-template-columns: repeat(var(--mega-cols, 1), minmax(0, 1fr));
@@ -1399,6 +1408,10 @@ main:focus {
   .mega[data-open="true"],
   .nav-item.compact .mega[data-open="true"] {
     display: block;
+  }
+
+  .mega-label {
+    margin: 0 0 0.4rem;
   }
 
   .mega-grid,
