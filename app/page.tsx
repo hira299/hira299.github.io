@@ -43,6 +43,8 @@ export default function HomePage() {
       <Hero />
       <ProofMetrics />
       <ExperienceTimeline />
+      <TechStack />
+      <Services />
 
       <section className="section" aria-labelledby="featured-title">
         <h2 id="featured-title">Featured case studies</h2>
@@ -55,8 +57,6 @@ export default function HomePage() {
           ))}
         </div>
       </section>
-
-      <Services />
 
       <section className="section" aria-labelledby="projects-title">
         <h2 id="projects-title">Selected projects</h2>
@@ -71,7 +71,6 @@ export default function HomePage() {
       </section>
 
       <Research />
-      <TechStack />
 
       <section className="section" aria-labelledby="how-title">
         <h2 id="how-title">How I work</h2>

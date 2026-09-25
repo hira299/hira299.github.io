@@ -166,6 +166,9 @@ export default function AboutPage() {
             <Link href="/case-studies/">Case Studies →</Link>
           </li>
           <li>
+            <Link href="/#services">Services I Offer →</Link>
+          </li>
+          <li>
             <Link href="/contact/">Contact →</Link>
           </li>
         </ul>

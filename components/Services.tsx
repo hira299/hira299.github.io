@@ -4,13 +4,13 @@ import { services } from "@/data/services";
 
 export function Services({
   title = "What I build and test",
-  intro = "AI systems and automations for production, and the QA that keeps them trustworthy: LLM pipelines, agents, n8n workflows, and testing for B2B SaaS.",
+  intro = "I build AI systems and automations for clients, and test the systems that need to hold up in the real world: LLM pipelines, AI agents, n8n workflows, API integrations, and B2B SaaS QA.",
 }: {
   title?: string;
   intro?: string;
 }) {
   return (
-    <section className="section" aria-labelledby="services-title">
+    <section id="services" className="section" aria-labelledby="services-title">
       <h2 id="services-title">{title}</h2>
       <p className="section-support">{intro}</p>
       <ul className="card-grid">
