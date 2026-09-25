@@ -68,6 +68,17 @@ export const navMenus: NavMenu[] = [
           },
         ],
       },
+      {
+        title: "Open Technical Resources",
+        href: "/projects/#open-technical-resources",
+        links: [
+          {
+            label: "View technical resources",
+            href: "/projects/#open-technical-resources",
+            description: "Public n8n resilience patterns and multi-tenant QA matrices",
+          },
+        ],
+      },
     ],
     footer: [
       { label: "All case studies", href: "/case-studies/" },

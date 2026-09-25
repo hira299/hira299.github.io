@@ -8,6 +8,7 @@ import { ProjectCard } from "@/components/ProjectCard";
 import { ProofMetrics } from "@/components/ProofMetrics";
 import { Research } from "@/components/Research";
 import { Services } from "@/components/Services";
+import { TechnicalResources } from "@/components/TechnicalResources";
 import { TechStack } from "@/components/TechStack";
 import { caseStudies } from "@/data/case-studies";
 import { featuredProjects } from "@/data/projects";
@@ -69,6 +70,8 @@ export default function HomePage() {
           ))}
         </div>
       </section>
+
+      <TechnicalResources placement="home" />
 
       <Research />
 

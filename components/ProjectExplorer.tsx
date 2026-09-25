@@ -1,7 +1,8 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { Fragment, useMemo, useState } from "react";
 import { ProjectCard } from "./ProjectCard";
+import { TechnicalResources } from "./TechnicalResources";
 import { projectCategories, projectGroups, projects, type ProjectCategory } from "@/data/projects";
 
 export function ProjectExplorer() {
@@ -55,21 +56,28 @@ export function ProjectExplorer() {
       {results.length > 0 ? (
         projectGroups.map((group) => {
           const items = results.filter((project) => project.group === group.id);
-          if (items.length === 0) return null;
           return (
-            <div key={group.id} id={group.anchor} className="project-group">
-              <h3 className="project-group-title">{group.title}</h3>
-              <p className="section-support">{group.description}</p>
-              <div className="card-grid">
-                {items.map((project) => (
-                  <ProjectCard key={project.slug} project={project} anchor />
-                ))}
-              </div>
-            </div>
+            <Fragment key={group.id}>
+              {items.length > 0 ? (
+                <div id={group.anchor} className="project-group">
+                  <h3 className="project-group-title">{group.title}</h3>
+                  <p className="section-support">{group.description}</p>
+                  <div className="card-grid">
+                    {items.map((project) => (
+                      <ProjectCard key={project.slug} project={project} anchor />
+                    ))}
+                  </div>
+                </div>
+              ) : null}
+              {group.id === "ai-build" ? <TechnicalResources placement="projects" /> : null}
+            </Fragment>
           );
         })
       ) : (
-        <p className="support">No projects match. Try another term or category.</p>
+        <>
+          <p className="support">No projects match. Try another term or category.</p>
+          <TechnicalResources placement="projects" />
+        </>
       )}
     </section>
   );
