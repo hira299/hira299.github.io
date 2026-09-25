@@ -5,12 +5,14 @@ type BuildMetadataInput = {
   title?: string;
   description?: string;
   path?: string;
+  robots?: Metadata["robots"];
 };
 
 export function buildMetadata({
   title,
   description = siteConfig.description,
   path = "/",
+  robots,
 }: BuildMetadataInput = {}): Metadata {
   const fullTitle = title
     ? `${title} | ${siteConfig.name}`
@@ -20,6 +22,7 @@ export function buildMetadata({
   return {
     title: fullTitle,
     description,
+    ...(robots ? { robots } : {}),
     metadataBase: new URL(siteConfig.url),
     alternates: {
       canonical: url,

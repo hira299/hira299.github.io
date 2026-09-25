@@ -5,10 +5,10 @@ import { buildMetadata } from "@/lib/metadata";
 import { aboutJsonLd } from "@/lib/structured-data";
 
 const description =
-  "Hira Ahmed is an AI Engineer in Karachi, Pakistan, building production LLM pipelines, AI agents, and n8n automations, and providing B2B SaaS QA and API testing.";
+  "About Hira Ahmed, an AI Engineer in Karachi: how she solves problems, how she moved from QA into AI engineering, and the Sentinel-Mesh research that followed.";
 
 export const metadata = buildMetadata({
-  title: "About",
+  title: "About · AI Engineer",
   description,
   path: "/about/",
 });

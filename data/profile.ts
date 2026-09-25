@@ -12,7 +12,7 @@ export const profile = {
   statement:
     "I build production AI systems and automations, then verify that the systems behind them behave reliably.",
   identity:
-    "An AI Engineer who builds LLM pipelines, AI agents, and automations, and also provides specialized n8n automation and B2B SaaS QA services.",
+    "An AI Engineer and AI Automation Engineer who builds LLM pipelines, AI agents, and automations, and also provides specialized n8n automation and B2B SaaS QA services.",
   shortBio:
     "AI Engineer building production LLM pipelines, AI agents, and n8n automations, with hands-on QA and API testing for B2B SaaS platforms.",
   longBio: [
@@ -129,6 +129,8 @@ export const profile = {
     "LangChain",
     "AI automation",
     "n8n workflow automation",
+    "Self-hosted n8n",
+    "AI workflow testing",
     "API integration",
     "API testing",
     "B2B SaaS quality assurance",

@@ -8,7 +8,7 @@ const description =
   "AI agents, LLM systems, n8n and Make.com automations, cloud, cybersecurity, and research projects by Hira Ahmed, with demos and source code.";
 
 export const metadata = buildMetadata({
-  title: "Projects",
+  title: "AI Agent, n8n & Cloud Projects",
   description,
   path: "/projects/",
 });

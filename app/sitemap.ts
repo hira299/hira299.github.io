@@ -19,15 +19,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     ...staticRoutes.map((path) => ({
       url: `${siteConfig.url}${path || "/"}`,
-      lastModified: new Date(),
     })),
     ...services.filter((service) => service.hasPage).map((service) => ({
       url: `${siteConfig.url}${service.href}`,
-      lastModified: new Date(),
     })),
     ...caseStudies.map((study) => ({
       url: `${siteConfig.url}${study.href}`,
-      lastModified: new Date(),
     })),
   ];
 }

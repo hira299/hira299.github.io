@@ -10,7 +10,7 @@ const description =
   "Research by Hira Ahmed: Sentinel-Mesh (LLM remediation checked by Z3 SMT formal verification), the CloudFix-Bench benchmark, and IEEE Access peer review.";
 
 export const metadata = buildMetadata({
-  title: "Research",
+  title: "Sentinel-Mesh Research",
   description,
   path: "/research/",
 });

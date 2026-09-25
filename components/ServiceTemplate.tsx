@@ -77,7 +77,14 @@ export async function ServiceTemplate({ slug }: { slug: ServiceSlug }) {
       </p>
 
       <JsonLd data={servicePageJsonLd(service)} />
-      <HireMe title={`Discuss a ${service.title.toLowerCase()} project`} />
+      <HireMe
+        title={`Discuss a ${service.title.toLowerCase()} project`}
+        intro={
+          slug === "n8n-automation"
+            ? "Need to hire an n8n automation engineer for a production workflow? Available for remote AI automation, n8n, AI agent, API integration, and B2B SaaS QA projects."
+            : undefined
+        }
+      />
     </>
   );
 }

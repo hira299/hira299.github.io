@@ -34,7 +34,7 @@ export function personNode(): Node {
     url: `${base}/`,
     image: `${base}/og-image.png`,
     email: `mailto:${email}`,
-    jobTitle: profile.careerRole,
+    jobTitle: [profile.careerRole, profile.role],
     description: profile.identity,
     address: {
       "@type": "PostalAddress",
@@ -120,6 +120,9 @@ function researchNodes(): Node[] {
       "@type": "ScholarlyArticle",
       "@id": `${base}/#sentinel-mesh`,
       headline: sentinel.title,
+      name: sentinel.title,
+      url: `${base}/case-studies/sentinel-mesh/`,
+      identifier: "https://doi.org/10.21203/rs.3.rs-10674271/v1",
       author: personRef,
       creativeWorkStatus: "Preprint, manuscript under review",
       sameAs: sentinel.links.filter((link) => link.label !== "Code").map((link) => link.href),
